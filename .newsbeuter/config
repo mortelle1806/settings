@@ -1,0 +1,27 @@
+#article-sort-order desc
+
+refresh-on-startup yes
+browser links
+color listnormal cyan blue
+color listnormal_unread white blue
+color listfocus blue cyan
+color listfocus_unread black cyan
+color background white blue
+color info black cyan
+color article white blue
+articlelist-format "%4i %f %D  %?T?|%-17T| ?%t"
+datetime-format "%b %d %R"
+max-items 100
+reload-time 20
+reload-threads 20
+show-read-feeds yes
+show-read-articles yes
+mark-as-read-on-hover no
+highlight all "Macron" red magenta bold
+highlight all "Paris" red magenta bold
+highlight all "Grégory" yellow green bold
+
+
+highlight feedlist "^ *[0-9]+ *N " color156 default
+highlight articlelist "^ *[0-9]+ *N " color156 default
+ 
