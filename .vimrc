@@ -89,6 +89,9 @@ nnoremap <F4> :cn<CR>
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
+" Note the trailing space
+inoremap <C-B> <3 
+
 "set switchbuf+=usetab,newtab
 
 " This is for CTRL+n autocompletion while in insert mode.
