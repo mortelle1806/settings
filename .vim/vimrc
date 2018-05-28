@@ -97,3 +97,18 @@ inoremap <C-B> <3
 " This is for CTRL+n autocompletion while in insert mode.
 " The above command will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match. (The longest setting is responsible for the former effect and the menuone is responsible for the latter.) 
 set completeopt=longest,menuone
+
+" The following will make the cursor move by display lines when long lines are wrapping
+" Source: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+
