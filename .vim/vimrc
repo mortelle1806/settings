@@ -1,5 +1,9 @@
 set t_Co=256
 
+" This is for WSL, see https://github.com/Microsoft/WSL/issues/1706
+set term=screen-256color
+set t_ut=
+
 syntax enable
 set number
 set relativenumber
