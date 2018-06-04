@@ -76,8 +76,8 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 " F3 = next match
 " nnoremap <F3> n
 
-" F2 = toggle wrap and show new value.
-nnoremap <F2> :set wrap! wrap?<CR>
+" F2 = toggle wrap in all windows (works in vimdiff) and show new value in current window.
+nnoremap <F2> :windo set wrap! wrap?<CR>
 
 " Toggle search results highlighting
 nnoremap <F3> :set hlsearch!<CR>
