@@ -75,11 +75,17 @@ set wildmenu            " visual autocomplete for command menu
 " The minus sign indicates to clear the quickfix window before putting the results.
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
+let NERDTreeShowHidden=1
+let g:NERDTreeWinPos = "right"
+
 " Shift-F3 = previous match
 " nnoremap <C-[>O1;2R N
 
 " F3 = next match
 " nnoremap <F3> n
+
+" F1 = Toggle NERDTree and switch to the editing buffer to the left
+map <F1> :NERDTreeToggle<CR>:wincmd h<CR>
 
 " F2 = toggle wrap in all windows (works in vimdiff) and show new value in current window.
 nnoremap <F2> :windo set wrap! wrap?<CR>
