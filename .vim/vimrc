@@ -76,6 +76,9 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 " F3 = next match
 " nnoremap <F3> n
 
+" F2 = toggle wrap and show new value.
+nnoremap <F2> :set wrap! wrap?<CR>
+
 " Toggle search results highlighting
 nnoremap <F3> :set hlsearch!<CR>
 
