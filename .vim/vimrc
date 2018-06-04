@@ -16,6 +16,7 @@ set incsearch
 set ignorecase " often you want to ignore case when searching for text
 set smartcase  " will turn on case-sensitivity only if the text to search contains uppercase characters, which is what you often want
 set autoindent
+set paste
 
 set tabstop=4
 set shiftwidth=4
