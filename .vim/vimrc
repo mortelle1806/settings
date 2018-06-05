@@ -4,6 +4,11 @@ set t_Co=256
 set term=screen-256color
 set t_ut=
 
+" Pathogen
+execute pathogen#infect()
+syntax on
+filetype plugin indent on
+
 syntax enable
 set number
 set relativenumber
@@ -15,6 +20,7 @@ set incsearch
 set ignorecase " often you want to ignore case when searching for text
 set smartcase  " will turn on case-sensitivity only if the text to search contains uppercase characters, which is what you often want
 set autoindent
+set paste
 
 set tabstop=4
 set shiftwidth=4
@@ -74,11 +80,20 @@ set wildmenu            " visual autocomplete for command menu
 " The minus sign indicates to clear the quickfix window before putting the results.
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
+let NERDTreeShowHidden=1
+let g:NERDTreeWinPos = "right"
+
 " Shift-F3 = previous match
 " nnoremap <C-[>O1;2R N
 
 " F3 = next match
 " nnoremap <F3> n
+
+" F1 = Toggle NERDTree and switch to the editing buffer to the left
+map <F1> :NERDTreeToggle<CR>:wincmd h<CR>
+
+" F2 = toggle wrap in all windows (works in vimdiff) and show new value in current window.
+nnoremap <F2> :windo set wrap! wrap?<CR>
 
 " Toggle search results highlighting
 nnoremap <F3> :set hlsearch!<CR>
@@ -114,5 +129,9 @@ vnoremap <Down> gj
 vnoremap <Up> gk
 inoremap <Down> <C-o>gj
 inoremap <Up> <C-o>gk
+
+" Make - and + (in fact =) make browsing code with less RSI
+noremap - 4gk
+noremap = 4gj
 
 
