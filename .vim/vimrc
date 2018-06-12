@@ -134,3 +134,13 @@ nmap <Leader>s :update<CR>
 vmap <Leader>s <Esc><Leader>sgv
 imap <Leader>s <c-o><Leader>s
 
+" Tab for Esc
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
+" Warning: This prevents from using CTRL-I, which which CTRL-O allows cycling
+" in the jump list.
+nnoremap <Tab> <Esc>
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+cnoremap <Tab> <C-C><Esc>
+inoremap <Tab> <Esc>
+inoremap <Leader><Tab> <Tab>
