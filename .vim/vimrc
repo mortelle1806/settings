@@ -117,6 +117,19 @@ nnoremap <Home> :bn<CR>
 " Note the trailing space
 inoremap <C-B> <3 
 
+iabbrev coeur cœur
+iabbrev oeil œil
+iabbrev ps: P.-S.:
+iabbrev ps2: P.-S.2:
+iabbrev 5c <3 <3 <3 <3 <3... :)
+iabbrev 6c <3 <3 <3 <3 <3 <3... :)
+iabbrev 7c <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 8c <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 9c <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 10c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 11c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 12c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+
 "set switchbuf+=usetab,newtab
 
 " This is for CTRL+n autocompletion while in insert mode.
