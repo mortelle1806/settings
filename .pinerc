@@ -263,7 +263,7 @@ status-message-delay=
 busy-cue-rate=
 
 # The approximate number of seconds between checks for new mail
-mail-check-interval=
+mail-check-interval=60
 
 # The approximate number of seconds between checks for new mail in folders
 # other than the current folder and inbox.
