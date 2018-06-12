@@ -40,7 +40,7 @@ map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR
 "<Leader> = \ by default
 
 " source $MYVIMRC reloads the saved $MYVIMRC
-:nmap <Leader>s :source $MYVIMRC
+:nmap <Leader>S :source $MYVIMRC
 
 " opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC
@@ -129,4 +129,8 @@ inoremap <Up> <C-o>gk
 noremap - 4gk
 noremap = 4gj
 
+" Quick save file (only if changed) and restore previous mode if any
+nmap <Leader>s :update<CR>
+vmap <Leader>s <Esc><Leader>sgv
+imap <Leader>s <c-o><Leader>s
 
