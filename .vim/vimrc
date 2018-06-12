@@ -20,14 +20,16 @@ set incsearch
 set ignorecase " often you want to ignore case when searching for text
 set smartcase  " will turn on case-sensitivity only if the text to search contains uppercase characters, which is what you often want
 set autoindent
-set paste
 
 set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Will not cut words in the middle when wrap is on
+set linebreak
+
 "This makes sure a minimum number of lines is always visible above the cursor
-set scrolloff=15
+set scrolloff=10
 
 " set background=light
 let hour = strftime("%H")
@@ -45,7 +47,7 @@ map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR
 "<Leader> = \ by default
 
 " source $MYVIMRC reloads the saved $MYVIMRC
-:nmap <Leader>s :source $MYVIMRC
+:nmap <Leader>S :source $MYVIMRC
 
 " opens $MYVIMRC for editing, or use :tabedit $MYVIMRC
 :nmap <Leader>v :e $MYVIMRC
@@ -89,27 +91,51 @@ let g:NERDTreeWinPos = "right"
 " F3 = next match
 " nnoremap <F3> n
 
-" F1 = Toggle NERDTree and switch to the editing buffer to the left
-map <F1> :NERDTreeToggle<CR>:wincmd h<CR>
+" Toggle NERDTree and switch to the editing buffer to the left
+map <Leader>1 :NERDTreeToggle<CR>:wincmd h<CR>
 
-" F2 = toggle wrap in all windows (works in vimdiff) and show new value in current window.
-nnoremap <F2> :windo set wrap! wrap?<CR>
+" Toggle wrap in all windows (works in vimdiff) and show new value in current window.
+nnoremap <Leader>2 :windo set wrap! wrap?<CR>
 
 " Toggle search results highlighting
-nnoremap <F3> :set hlsearch!<CR>
+nnoremap <Leader>3 :set hlsearch!<CR>
 
-" Shift-F4 = previous error in quickfix window
-nnoremap <C-[>O1;2S :cp<CR>
+" Toggle showing whitespace characters
+nnoremap <Leader>4 :set list!<CR>
 
-" F4 = next error in quickfix window
-nnoremap <F4> :cn<CR>
+" Go to previous error in quickfix window
+nnoremap _ :cp<CR>
+
+" Go to next error in quickfix window
+nnoremap + :cn<CR>
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
+" Switch between windows easily
+nnoremap CC <C-w>w
+
+" Switch between buffers easily
+nnoremap <Insert> :bp<CR>
+nnoremap <Home> :bn<CR>
+
+
 " Note the trailing space
 inoremap <C-B> <3 
+
+iabbrev coeur cœur
+iabbrev oeil œil
+iabbrev ps: P.-S.:
+iabbrev ps2: P.-S.2:
+iabbrev 5c <3 <3 <3 <3 <3... :)
+iabbrev 6c <3 <3 <3 <3 <3 <3... :)
+iabbrev 7c <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 8c <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 9c <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 10c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 11c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 12c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 
 "set switchbuf+=usetab,newtab
 
@@ -134,4 +160,18 @@ inoremap <Up> <C-o>gk
 noremap - 4gk
 noremap = 4gj
 
+" Quick save file (only if changed) and restore previous mode if any
+nmap <Leader>s :update<CR>
+vmap <Leader>s <Esc><Leader>sgv
+imap <Leader>s <c-o><Leader>s
 
+" Tab for Esc
+" http://vim.wikia.com/wiki/Avoid_the_escape_key
+" Warning: This prevents from using CTRL-I, which which CTRL-O allows cycling
+" in the jump list.
+nnoremap <Tab> <Esc>
+vnoremap <Tab> <Esc>gV
+onoremap <Tab> <Esc>
+cnoremap <Tab> <C-C><Esc>
+inoremap <Tab> <Esc>
+inoremap <Leader><Tab> <Tab>
