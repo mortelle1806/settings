@@ -84,24 +84,35 @@ let g:NERDTreeWinPos = "right"
 " F3 = next match
 " nnoremap <F3> n
 
-" F1 = Toggle NERDTree and switch to the editing buffer to the left
-map <F1> :NERDTreeToggle<CR>:wincmd h<CR>
+" Toggle NERDTree and switch to the editing buffer to the left
+map <Leader>1 :NERDTreeToggle<CR>:wincmd h<CR>
 
-" F2 = toggle wrap in all windows (works in vimdiff) and show new value in current window.
-nnoremap <F2> :windo set wrap! wrap?<CR>
+" Toggle wrap in all windows (works in vimdiff) and show new value in current window.
+nnoremap <Leader>2 :windo set wrap! wrap?<CR>
 
 " Toggle search results highlighting
-nnoremap <F3> :set hlsearch!<CR>
+nnoremap <Leader>3 :set hlsearch!<CR>
 
-" Shift-F4 = previous error in quickfix window
-nnoremap <C-[>O1;2S :cp<CR>
+" Toggle showing whitespace characters
+nnoremap <Leader>4 :set list!<CR>
 
-" F4 = next error in quickfix window
-nnoremap <F4> :cn<CR>
+" Go to previous error in quickfix window
+nnoremap _ :cp<CR>
+
+" Go to next error in quickfix window
+nnoremap + :cn<CR>
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
+
+" Switch between windows easily
+nnoremap CC <C-w>w
+
+" Switch between buffers easily
+nnoremap <Insert> :bp<CR>
+nnoremap <Home> :bn<CR>
+
 
 " Note the trailing space
 inoremap <C-B> <3 
