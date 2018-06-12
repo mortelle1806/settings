@@ -25,7 +25,7 @@ set expandtab
 set linebreak
 
 "This makes sure a minimum number of lines is always visible above the cursor
-set scrolloff=15
+set scrolloff=10
 
 " set background=light
 let hour = strftime("%H")
