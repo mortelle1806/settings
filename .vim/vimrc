@@ -52,9 +52,6 @@ map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR
 "This unsets the "last search pattern" register by hitting return
 "nnoremap <CR> :noh<CR><CR>
 
-"Get out of insert mode with `
-"imap ` <Esc>
-
 "set cursorline
 "hi CursorLine term=NONE cterm=NONE ctermbg=none ctermfg=none
 
