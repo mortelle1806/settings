@@ -56,9 +56,6 @@ map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR
 "This unsets the "last search pattern" register by hitting return
 "nnoremap <CR> :noh<CR><CR>
 
-"Get out of insert mode with `
-"imap ` <Esc>
-
 "set cursorline
 "hi CursorLine term=NONE cterm=NONE ctermbg=none ctermfg=none
 
@@ -91,6 +88,9 @@ let g:NERDTreeWinPos = "right"
 " F3 = next match
 " nnoremap <F3> n
 
+" Quick save and exit
+nnoremap <Leader><Leader> :xa<CR>
+
 " Toggle NERDTree and switch to the editing buffer to the left
 map <Leader>1 :NERDTreeToggle<CR>:wincmd h<CR>
 
@@ -120,6 +120,10 @@ nnoremap CC <C-w>w
 nnoremap <Insert> :bp<CR>
 nnoremap <Home> :bn<CR>
 
+" Switch between tabs easily
+nnoremap <Delete> :tabp<CR>
+nnoremap <End> :tabn<CR>
+
 " Note the trailing space
 inoremap <C-B> <3 
 
@@ -127,6 +131,8 @@ iabbrev coeur cœur
 iabbrev oeil œil
 iabbrev ps: P.-S.:
 iabbrev ps2: P.-S.2:
+iabbrev 3c <3 <3 <3... :)
+iabbrev 4c <3 <3 <3 <3... :)
 iabbrev 5c <3 <3 <3 <3 <3... :)
 iabbrev 6c <3 <3 <3 <3 <3 <3... :)
 iabbrev 7c <3 <3 <3 <3 <3 <3 <3... :)
@@ -135,6 +141,9 @@ iabbrev 9c <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 10c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 11c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 12c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 13c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 14c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 15c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 
 "set switchbuf+=usetab,newtab
 
@@ -171,6 +180,19 @@ imap <Leader>s <c-o><Leader>s
 nnoremap <Tab> <Esc>
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
-cnoremap <Tab> <C-C><Esc>
+" This one causes Tab to not work anymore when asking for auto-completion in
+" command mode (:command)
+"cnoremap <Tab> <C-C><Esc>
 inoremap <Tab> <Esc>
 inoremap <Leader><Tab> <Tab>
+
+" Set up cursor behaviour:
+if &term =~ "xterm\\|rxvt"
+    " use an cursor of a certain color in insert mode
+    let &t_SI = "\<Esc>]12;red\x7"
+    " use a another cursor color otherwise
+    let &t_EI = "\<Esc>]12;gray\x7"
+    silent !echo -ne "\033]12;gray\007"
+    " reset cursor when vim exits
+    autocmd VimLeave * silent !echo -ne "\033]12;gray\007"
+endif

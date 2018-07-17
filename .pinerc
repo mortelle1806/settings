@@ -77,7 +77,11 @@ feature-list=include-header-in-reply,
 	enable-alternate-editor-implicitly
 
 # Alpine executes these keys upon startup (e.g. to view msg 13: i,j,1,3,CR,v)
-initial-keystroke-list=
+# NOTE: This will go to the first folder of the inbox at startup
+initial-keystroke-list=l,
+	n,
+	CR,
+	CR
 
 # Only show these headers (by default) when composing messages
 default-composer-hdrs=From:,
@@ -259,7 +263,7 @@ status-message-delay=
 busy-cue-rate=
 
 # The approximate number of seconds between checks for new mail
-mail-check-interval=
+mail-check-interval=60
 
 # The approximate number of seconds between checks for new mail in folders
 # other than the current folder and inbox.

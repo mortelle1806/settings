@@ -1,0 +1,16 @@
+[include]
+    path = ~/.gitconfig.local
+
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[merge]
+	tool = vimdiff
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	dft = difftool
