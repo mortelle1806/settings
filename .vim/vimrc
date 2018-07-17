@@ -176,7 +176,9 @@ imap <Leader>s <c-o><Leader>s
 nnoremap <Tab> <Esc>
 vnoremap <Tab> <Esc>gV
 onoremap <Tab> <Esc>
-cnoremap <Tab> <C-C><Esc>
+" This one causes Tab to not work anymore when asking for auto-completion in
+" command mode (:command)
+"cnoremap <Tab> <C-C><Esc>
 inoremap <Tab> <Esc>
 inoremap <Leader><Tab> <Tab>
 
