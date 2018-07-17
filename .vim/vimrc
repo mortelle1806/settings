@@ -87,6 +87,9 @@ let g:NERDTreeWinPos = "right"
 " F3 = next match
 " nnoremap <F3> n
 
+" Quick save and exit
+nnoremap <Leader><Leader> :xa<CR>
+
 " Toggle NERDTree and switch to the editing buffer to the left
 map <Leader>1 :NERDTreeToggle<CR>:wincmd h<CR>
 
