@@ -120,7 +120,6 @@ nnoremap CC <C-w>w
 nnoremap <Insert> :bp<CR>
 nnoremap <Home> :bn<CR>
 
-
 " Note the trailing space
 inoremap <C-B> <3 
 
