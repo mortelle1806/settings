@@ -127,6 +127,8 @@ iabbrev coeur cœur
 iabbrev oeil œil
 iabbrev ps: P.-S.:
 iabbrev ps2: P.-S.2:
+iabbrev 3c <3 <3 <3... :)
+iabbrev 4c <3 <3 <3 <3... :)
 iabbrev 5c <3 <3 <3 <3 <3... :)
 iabbrev 6c <3 <3 <3 <3 <3 <3... :)
 iabbrev 7c <3 <3 <3 <3 <3 <3 <3... :)
@@ -135,6 +137,9 @@ iabbrev 9c <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 10c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 11c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 iabbrev 12c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 13c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 14c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
+iabbrev 15c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 
 "set switchbuf+=usetab,newtab
 
