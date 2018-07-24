@@ -144,6 +144,7 @@ nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
 " Switch between windows easily
 nnoremap <F12> <C-w><C-w>
+tmap <F12> <C-w><C-w> " Make it work in terminal buffer too, without this line F12 outputs a tilda character
 
 " Switch between buffers easily (does not seem to work everywhere)
 nnoremap <Insert> :bp<CR>
