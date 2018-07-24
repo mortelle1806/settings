@@ -233,3 +233,13 @@ if &term =~ "xterm\\|rxvt"
     " reset cursor when vim exits
     autocmd VimLeave * silent !echo -ne "\033]12;gray\007"
 endif
+
+" Makes yanking and pasting use the X clipboard. Prepend it because their is a
+" default value already (probably the exclude statement in the default value
+" is the cause)
+set clipboard^=unnamed
+
+" Disable default clipboard behavior that makes visual mode copy to clipboard
+" on each change of visual selection.
+set clipboard-=autoselect
+
