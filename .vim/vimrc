@@ -177,6 +177,8 @@ imap ` <Esc>
 " insert mode using C-V C-V
 inoremap <C-V><C-V> <C-V>u0060
 
+" Make shift-Tab decrease indent like in most editors
+inoremap <S-Tab> <C-d>
 
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt"
