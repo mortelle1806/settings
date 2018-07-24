@@ -9,6 +9,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" No sounds when cursor blocked or whatever
+set visualbell
+
 syntax enable
 set number
 set relativenumber
