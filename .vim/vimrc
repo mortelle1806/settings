@@ -23,6 +23,7 @@ set history=1000
 syntax enable
 set number
 set relativenumber
+set ruler " shows in status line where you are in the file
 
 " Do not activate hlsearch by default. See below that F3 lets you toggle it.
 " set hlsearch
