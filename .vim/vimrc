@@ -18,6 +18,8 @@ set visualbell
 " http://items.sjbach.com/319/configuring-vim-right
 set hidden
 
+set history=1000
+
 syntax enable
 set number
 set relativenumber
