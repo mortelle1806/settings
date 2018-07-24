@@ -69,7 +69,8 @@ colorscheme PaperColor
 hi Terminal ctermbg=234 ctermfg=grey
 
 " <Leader>bg will switch color scheme between light and dark
-map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
+" (restoring ModeMsg is important in this case, otherwise it's lost)
+map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>:hi ModeMsg ctermfg=white ctermbg=darkred<cr>
 
 "<Leader> = \ by default
 
