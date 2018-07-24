@@ -243,3 +243,9 @@ set clipboard^=unnamed
 " on each change of visual selection.
 set clipboard-=autoselect
 
+" This makes the buffers created for terminal use to be marked as 'unlisted'.
+" This prevents :bp and :bn to cycle on these windows and get stuck on the
+" shell prompt if the terminal is not in normal mode. Another example of
+" unlisted buffer is the NERDTree buffer. Type !ls to see all buffers included
+" unlisted ones. Source for this solution: https://github.com/jalvesaq/Nvim-R/issues/340
+autocmd TerminalOpen * set nobuflisted
