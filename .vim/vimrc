@@ -54,12 +54,7 @@ set scrolloff=10
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
-let hour = strftime("%H")
-if 6 <= hour && hour < 18
-  set background=light
-else
-  set background=dark
-endif
+set background=dark
 
 colorscheme PaperColor
 
