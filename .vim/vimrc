@@ -49,7 +49,10 @@ set linebreak
 "This makes sure a minimum number of lines is always visible above the cursor
 set scrolloff=10
 
-" set background=light
+" Scroll the viewport (without moving the cursor) 3x faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
 let hour = strftime("%H")
 if 6 <= hour && hour < 18
   set background=light
