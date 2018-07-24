@@ -149,9 +149,13 @@ nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 " Switch between windows easily
 nnoremap CC <C-w>w
 
-" Switch between buffers easily
+" Switch between buffers easily (does not seem to work everywhere)
 nnoremap <Insert> :bp<CR>
 nnoremap <Home> :bn<CR>
+
+" Switch between buffers easily
+nnoremap <C-S-p> :bprevious<CR>
+nnoremap <C-S-n> :bnext<CR>
 
 " Switch between tabs easily
 nnoremap <Delete> :tabp<CR>
