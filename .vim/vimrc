@@ -36,6 +36,9 @@ set autoindent
 " Necessary since switch from vim 7.4 to 8.1.
 set backspace=indent,eol,start
 
+" Shows selection size information in bottom line while in visual mode
+set showcmd
+
 set tabstop=4
 set shiftwidth=4
 set expandtab
