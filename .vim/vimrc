@@ -133,6 +133,9 @@ nnoremap <Leader>3 :set hlsearch!<CR>
 " Toggle showing whitespace characters
 nnoremap <Leader>4 :set list!<CR>
 
+" Show the most important whitespace characters
+set listchars=tab:>-,trail:·,eol:$
+
 " Go to previous error in quickfix window
 nnoremap _ :cp<CR>
 
