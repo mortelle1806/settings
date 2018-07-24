@@ -62,6 +62,12 @@ endif
 
 colorscheme PaperColor
 
+" Background color approximation of what is in my Xresources in URxvt.background
+" If you don't do this, by default vim will use all default colors of the
+" terminal emulator, except for the background+foreground which will match
+" with the chosen colorscheme.
+hi Terminal ctermbg=234 ctermfg=grey
+
 " <Leader>bg will switch color scheme between light and dark
 map <Leader>bg :let &background = ( &background == "dark"? "light" : "dark" )<CR>
 
