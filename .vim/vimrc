@@ -12,6 +12,12 @@ filetype plugin indent on
 " No sounds when cursor blocked or whatever
 set visualbell
 
+" Makes vim behave like most editors:
+" - The current buffer can be put to the background without writing to disk;
+" - When a background buffer becomes current again, marks and undo-history are remembered.
+" http://items.sjbach.com/319/configuring-vim-right
+set hidden
+
 syntax enable
 set number
 set relativenumber
