@@ -40,6 +40,7 @@ set backspace=indent,eol,start
 set showcmd
 
 set tabstop=4
+set softtabstop=4
 set shiftwidth=4
 set expandtab
 
@@ -147,7 +148,7 @@ nnoremap + :cn<CR>
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
 " Switch between windows easily
-nnoremap CC <C-w>w
+nnoremap <F12> <C-w><C-w>
 
 " Switch between buffers easily (does not seem to work everywhere)
 nnoremap <Insert> :bp<CR>
@@ -210,18 +211,16 @@ nmap <Leader>s :update<CR>
 vmap <Leader>s <Esc><Leader>sgv
 imap <Leader>s <c-o><Leader>s
 
-" Tab for Esc
-" http://vim.wikia.com/wiki/Avoid_the_escape_key
-" Warning: This prevents from using CTRL-I, which which CTRL-O allows cycling
-" in the jump list.
-nnoremap <Tab> <Esc>
-vnoremap <Tab> <Esc>gV
-onoremap <Tab> <Esc>
-" This one causes Tab to not work anymore when asking for auto-completion in
-" command mode (:command)
-"cnoremap <Tab> <C-C><Esc>
-inoremap <Tab> <Esc>
-inoremap <Leader><Tab> <Tab>
+" Back tick as replacement for Esc. Tab is good too but as soon as you start
+" programming, you regret it.
+imap ` <Esc>
+
+" Since tilda is now taken in insert mode, provide a way to write a tilda in
+" insert mode using C-V C-V
+inoremap <C-V><C-V> <C-V>u0060
+
+" Make shift-Tab decrease indent like in most editors
+inoremap <S-Tab> <C-d>
 
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt"
