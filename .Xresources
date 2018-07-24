@@ -3,6 +3,19 @@ URxvt.iso14755_52: off
 
 URxvt.background:	#1F1D19
 URxvt.foreground:	#DEDEDE
+
+URxvt.color3:           DarkGoldenrod
+URxvt.color4:           RoyalBlue
+URxvt.color11:          LightGoldenrod
+URxvt.color12:          LightSteelBlue
+URxvt.color7:           gray75
+URxvt.colorBD:          #ffffff
+URxvt.colorUL:          LightSlateGrey
+URxvt.colorIT:          SteelBlue
+URxvt.cursorColor:      grey90
+URxvt.highlightColor:   grey25
+
+
 URxvt.font:			xft:Bitstream Vera Sans Mono:size=10:antialias=true:hinting=true
 URxvt.boldFont:		xft:Bitstream Vera Sans Mono:bold:size=10:antialias=true:hinting=true
 URxvt.scrollBar:	false
