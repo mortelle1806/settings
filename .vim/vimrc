@@ -111,7 +111,7 @@ nnoremap + :cn<CR>
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
 " Switch between windows easily
-nnoremap CC <C-w>w
+nnoremap <F12> <C-w><C-w>
 
 " Switch between buffers easily
 nnoremap <Insert> :bp<CR>
