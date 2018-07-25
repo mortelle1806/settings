@@ -16,3 +16,4 @@
 	dft = difftool
 [core]
 	excludesfile = ~/.gitignore
+	editor = vim
