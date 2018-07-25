@@ -158,9 +158,6 @@ nnoremap <C-S-n> :bnext<CR>
 nnoremap <Delete> :tabp<CR>
 nnoremap <End> :tabn<CR>
 
-" Shortcut in terminal buffer switch to Terminal-Normal mode
-tnoremap <C-I> <C-W>N
-
 " Note the trailing space
 inoremap <C-B> <3 
 
