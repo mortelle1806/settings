@@ -5,6 +5,9 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[difftool "vimdiff"]
+    # This is the default command line used by git *without* -R, which would otherwise make vim open buffers in read-only.
+    cmd = vim -f -d -c 'wincmd l' -c 'cd "$GIT_PREFIX"' "$LOCAL" "$REMOTE"
 [merge]
 	tool = vimdiff
 [alias]
