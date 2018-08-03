@@ -1,8 +1,10 @@
 set t_Co=256
 
 " This is for WSL, see https://github.com/Microsoft/WSL/issues/1706
-set term=screen-256color
-set t_ut=
+" Note: Commented because I use urxvt now and it prevents the code that
+" modifies the cursor color to work fine.
+"set term=screen-256color
+"set t_ut=
 
 " To disable a plugin, add it's bundle name to the following list
 let g:pathogen_disabled = []
