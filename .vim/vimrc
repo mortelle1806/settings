@@ -126,12 +126,6 @@ let NERDTreeMinimalUI=1 " Disables display of the 'Bookmarks' label and 'Press ?
 let g:NERDTreeWinSize=60
 let g:NERDTreeWinPos = "right"
 
-" Shift-F3 = previous match
-" nnoremap <C-[>O1;2R N
-
-" F3 = next match
-" nnoremap <F3> n
-
 " Quick save and exit
 nnoremap <Leader><Leader> :xa<CR>
 
