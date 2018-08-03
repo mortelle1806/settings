@@ -248,6 +248,9 @@ inoremap <C-V><C-V> <C-V>u0060
 " Make shift-Tab decrease indent like in most editors
 inoremap <S-Tab> <C-d>
 
+" Reload current file
+nnoremap <Leader>r :e<CR>
+
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt"
     " use an cursor of a certain color in insert mode
