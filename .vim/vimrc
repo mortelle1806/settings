@@ -276,7 +276,8 @@ set clipboard-=autoselect
 " shell prompt if the terminal is not in normal mode. Another example of
 " unlisted buffer is the NERDTree buffer. Type !ls to see all buffers included
 " unlisted ones. Source for this solution: https://github.com/jalvesaq/Nvim-R/issues/340
-autocmd TerminalOpen * set nobuflisted
+" NOTE: DEACTIVATED BECAUSE IT PREVENTS USING term_sendkeys()
+"autocmd TerminalOpen * set nobuflisted
 
 " Not vimdiff?
 if &diff == 0
