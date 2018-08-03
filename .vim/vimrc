@@ -163,6 +163,13 @@ set listchars=tab:>-,trail:·,eol:$
 nnoremap ( :cp<CR>
 nnoremap ) :cn<CR>
 
+" Use vim-bufkill buffer backward-forward commands because they successfully
+" avoid that an open built-in terminal buffer gets used. In fact it seems that
+" it successfully cycles only in buffers actually opened in the current
+" window, which is exactly what I want.
+nnoremap _ :BB<CR>
+nnoremap + :BF<CR>
+
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
