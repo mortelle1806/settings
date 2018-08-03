@@ -144,9 +144,16 @@ map <Leader>nt :NERDTreeToggle<CR>
 " Make NERDTree open tree to current file
 map <Leader>nf :NERDTreeFind<CR>
 
+if &diff
+    " Toggle wrap in all windows (works in vimdiff)
+    " Do not show new value in current window because it would make a prompt to
+    " continue after the result is output
+    nnoremap <Leader>ww :windo set wrap!<CR>
+else
+    " Toggle wrap in current windows and show new value in current window.
+    nnoremap <Leader>ww :set wrap! wrap?<CR>
+endif
 
-" Toggle wrap in all windows (works in vimdiff) and show new value in current window.
-nnoremap <Leader>2 :windo set wrap! wrap?<CR>
 
 " Toggle search results highlighting
 nnoremap <Leader>3 :set hlsearch!<CR>
