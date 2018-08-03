@@ -161,7 +161,7 @@ nnoremap <Leader>p :set paste! paste?<CR>
 nnoremap <Leader>hl :set hlsearch! hlsearch?<CR>
 
 " Toggle showing whitespace characters
-nnoremap <Leader>4 :set list!<CR>
+nnoremap <Leader>ws :set list! list?<CR>
 
 " Show the most important whitespace characters
 set listchars=tab:>-,trail:·,eol:$
