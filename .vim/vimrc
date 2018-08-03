@@ -158,7 +158,7 @@ endif
 nnoremap <Leader>p :set paste! paste?<CR>
 
 " Toggle search results highlighting
-nnoremap <Leader>3 :set hlsearch!<CR>
+nnoremap <Leader>hl :set hlsearch! hlsearch?<CR>
 
 " Toggle showing whitespace characters
 nnoremap <Leader>4 :set list!<CR>
