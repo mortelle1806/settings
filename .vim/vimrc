@@ -154,6 +154,8 @@ else
     nnoremap <Leader>ww :set wrap! wrap?<CR>
 endif
 
+" Toggle paste
+nnoremap <Leader>p :set paste! paste?<CR>
 
 " Toggle search results highlighting
 nnoremap <Leader>3 :set hlsearch!<CR>
