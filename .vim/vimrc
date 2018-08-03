@@ -188,7 +188,7 @@ nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 tnoremap <Leader>i <C-W>N
 
 " Note the trailing space
-inoremap <C-B> <3 
+inoremap <C-B> <3<Space> 
 
 iabbrev coeur cœur
 iabbrev oeil œil
