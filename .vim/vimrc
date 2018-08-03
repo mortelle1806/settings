@@ -57,6 +57,14 @@ set mouse=n
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
 
+" Tell vim where to put its backup files
+" WARNING: Make sure directory exists or you can get weird errors (in NERDTree on opening, for instance)
+set backupdir=~/.vim/tmp
+
+" Tell vim where to put swap files
+" WARNING: Make sure directory exists or you can get weird errors (in NERDTree on opening, for instance)
+set dir=~/.vim/tmp
+
 set background=dark
 
 colorscheme PaperColor
