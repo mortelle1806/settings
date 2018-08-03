@@ -245,6 +245,7 @@ imap <Leader>s <c-o><Leader>s
 " Back tick as replacement for Esc. Tab is good too but as soon as you start
 " programming, you regret it.
 imap ` <Esc>
+vmap ` <Esc>
 
 " Since tilda is now taken in insert mode, provide a way to write a tilda in
 " insert mode using C-V C-V
