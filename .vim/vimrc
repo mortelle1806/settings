@@ -172,6 +172,12 @@ nnoremap ) :cn<CR>
 nnoremap _ :BB<CR>
 nnoremap + :BF<CR>
 
+" Shortcut for Ack. Ack with '!' does not jump automatically to first result,
+" and in fact having Ack-vim jump automatically triggers a bug when in ide
+" mode if you are currently focused on NERDTree (file will be open in this
+" window instead of the code window). This does not happen with Ack!. 
+nnoremap <Leader>a :Ack!<Space>
+tnoremap <Leader>a <C-W><C-W>:Ack!<Space>
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
