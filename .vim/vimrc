@@ -158,10 +158,11 @@ nnoremap <Leader>ws :set list! list?<CR>
 set listchars=tab:>-,trail:·,eol:$
 
 " Go to previous error in quickfix window
-nnoremap _ :cp<CR>
-
 " Go to next error in quickfix window
-nnoremap + :cn<CR>
+" NOTE: This overrides the ( and ) which are useful but I don't use so far.
+nnoremap ( :cp<CR>
+nnoremap ) :cn<CR>
+
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
