@@ -183,21 +183,6 @@ tnoremap <Leader>a <C-W><C-W>:Ack!<Space>
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
-" Switch between windows easily
-nnoremap <F12> <C-w><C-w>
-tmap <F12> <C-w><C-w> " Make it work in terminal buffer too, without this line F12 outputs a tilda character
-
-" Switch between buffers easily (does not seem to work everywhere)
-nnoremap <Insert> :bp<CR>
-nnoremap <Home> :bn<CR>
-
-" Switch between buffers easily
-nnoremap <C-S-p> :bprevious<CR>
-nnoremap <C-S-n> :bnext<CR>
-
-" Switch between tabs easily
-nnoremap <Delete> :tabp<CR>
-nnoremap <End> :tabn<CR>
 
 " Easy shortcut to switch terminal to Terminal-Normal mode
 tnoremap <Leader>i <C-W>N
