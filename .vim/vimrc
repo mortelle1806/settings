@@ -22,6 +22,8 @@ syntax on
 filetype plugin indent on
 
 " Allows auto loading fzf.vim
+" NOTE: Even if ~/.fzf is present already, make sure it is *installed* using
+" included script 'install'.
 set rtp+=~/.fzf
 
 " No sounds when cursor blocked or whatever
