@@ -10,3 +10,6 @@
 [submodule ".vim/bundle/vim-markify"]
 	path = .vim/bundle/vim-markify
 	url = https://github.com/dhruvasagar/vim-markify.git
+[submodule ".vim/bundle/omnisharp-vim"]
+	path = .vim/bundle/omnisharp-vim
+	url = https://github.com/OmniSharp/omnisharp-vim.git
