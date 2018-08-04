@@ -12,7 +12,8 @@
 	url = https://github.com/dhruvasagar/vim-markify.git
 [submodule ".vim/bundle/omnisharp-vim"]
 	path = .vim/bundle/omnisharp-vim
-	url = https://github.com/OmniSharp/omnisharp-vim.git
+    url = https://github.com/mortelle1806/omnisharp-vim.git
+    branch = custom
 [submodule ".vim/bundle/vim-bufkill"]
 	path = .vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
