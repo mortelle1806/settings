@@ -254,6 +254,15 @@ inoremap <S-Tab> <C-d>
 " Reload current file
 nnoremap <Leader>r :e<CR>
 
+" Activate patience algorithm by default.
+" Can switch on the fly to another algorithm with :EnhancedDiff <...>
+" Enhances diff a lot in some cases.
+" Try vimdiff in .vim/bundle/vim-enhanced-diff/test/4
+" Result screenshot in https://github.com/chrisbra/vim-diff-enhanced
+if &diff
+    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
+endif
+
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt"
     " use an cursor of a certain color in insert mode
