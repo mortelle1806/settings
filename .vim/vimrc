@@ -21,6 +21,9 @@ execute pathogen#infect()
 syntax on
 filetype plugin indent on
 
+" Allows auto loading fzf.vim
+set rtp+=~/.fzf
+
 " No sounds when cursor blocked or whatever
 set visualbell
 
