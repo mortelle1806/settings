@@ -62,7 +62,7 @@ set expandtab
 set linebreak
 
 "This makes sure a minimum number of lines is always visible above the cursor
-set scrolloff=10
+set scrolloff=5
 
 " Allows using the mouse to resize window splits!
 set mouse=n
