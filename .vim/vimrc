@@ -146,6 +146,9 @@ map <Leader>nt :NERDTreeToggle<CR>
 " Make NERDTree open tree to current file
 map <Leader>nf :NERDTreeFind<CR>
 
+" Don't wrap by default after startup
+set nowrap
+
 if &diff
     " Toggle wrap in all windows (works in vimdiff)
     " Do not show new value in current window because it would make a prompt to
