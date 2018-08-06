@@ -26,3 +26,6 @@
 [submodule ".vim/bundle/HiCursorWords"]
 	path = .vim/bundle/HiCursorWords
 	url = https://github.com/jkerian/HiCursorWords.git
+[submodule ".vim/bundle/vim-signify"]
+	path = .vim/bundle/vim-signify
+	url = https://github.com/mhinz/vim-signify.git

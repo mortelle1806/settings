@@ -361,3 +361,6 @@ if &diff == 0
     " Add syntax highlighting for types and interfaces
     nnoremap <Leader>ht :OmniSharpHighlightTypes<CR>
 endif
+
+" Follow vim-signify plugin recommendation by narrowing down list of vcs
+let g:signify_vcs_list = [ 'git', 'perforce' ]
