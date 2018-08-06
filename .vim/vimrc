@@ -289,10 +289,11 @@ if &term =~ "xterm\\|rxvt"
     autocmd VimLeave * silent !echo -ne "\033]12;gray\007"
 endif
 
-" Makes yanking and pasting use the X clipboard. Prepend it because their is a
+" Makes yanking and pasting use the X clipboards. Prepend it because their is a
 " default value already (probably the exclude statement in the default value
 " is the cause)
-set clipboard^=unnamed
+" NOTE: unnamed only works with a WSL setup but not on pure Linux.
+set clipboard^=unnamedplus,unnamed
 
 " Disable default clipboard behavior that makes visual mode copy to clipboard
 " on each change of visual selection.
