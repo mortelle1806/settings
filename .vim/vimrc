@@ -205,7 +205,7 @@ endif
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
 " Immediately highlight all occurrences of current word in buffer
-let g:HiCursorWords_style='term=reverse cterm=reverse'
+let g:HiCursorWords_style='term=NONE cterm=NONE ctermfg=green'
 let g:HiCursorWords_delay=0
 
 " Easy shortcut to switch terminal to Terminal-Normal mode
