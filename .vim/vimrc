@@ -207,8 +207,7 @@ let g:HiCursorWords_delay=0
 " Easy shortcut to switch terminal to Terminal-Normal mode
 tnoremap <Leader>i <C-W>N
 
-" Note the trailing space
-inoremap <C-B> <3<Space> 
+inoremap <C-B> <3<Space>
 
 iabbrev coeur cœur
 iabbrev oeil œil
