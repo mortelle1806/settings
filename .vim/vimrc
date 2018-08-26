@@ -149,15 +149,19 @@ map <Leader>nf :NERDTreeFind<CR>
 " Don't wrap by default after startup
 set nowrap
 
-if &diff
-    " Toggle wrap in all windows (works in vimdiff)
-    " Do not show new value in current window because it would make a prompt to
-    " continue after the result is output
-    nnoremap <Leader>ww :windo set wrap!<CR>
-else
-    " Toggle wrap in current windows and show new value in current window.
-    nnoremap <Leader>ww :set wrap! wrap?<CR>
-endif
+nnoremap <Leader>ww :call ToggleWrap()<CR>
+function ToggleWrap()
+    if &diff
+        " Toggle wrap in all windows (works in vimdiff)
+        " Do not show new value in current window because it would make a prompt to
+        " continue after the result is output
+        windo set wrap!
+    else
+        " Toggle wrap in current windows and show new value in current window.
+        set wrap!
+        set wrap?
+    endif
+endfunction
 
 " Toggle paste
 nnoremap <Leader>p :set paste! paste?<CR>
