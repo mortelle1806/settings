@@ -272,6 +272,9 @@ inoremap <S-Tab> <C-d>
 " Reload current file
 nnoremap <Leader>r :e<CR>
 
+" Start a terminal window at the bottom
+nnoremap <Leader>t :bo term ++rows=15<CR>
+
 " Activate patience algorithm by default.
 " Can switch on the fly to another algorithm with :EnhancedDiff <...>
 " Enhances diff a lot in some cases.
