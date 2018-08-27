@@ -370,3 +370,15 @@ endif
 
 " Follow vim-signify plugin recommendation by narrowing down list of vcs
 let g:signify_vcs_list = [ 'git', 'perforce' ]
+
+" Open a diff tab or close it with the same shortcut
+nnoremap <Leader>d :call OpenOrCloseDiff()<CR>
+function OpenOrCloseDiff()
+    if &diff
+        " This closes the diff tab that gets opened by :SignifyDiff
+        tabc
+    else
+        " This opens a new tab with a diff inside, if there are changes
+        SignifyDiff
+    endif
+endfunction
