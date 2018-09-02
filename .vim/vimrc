@@ -197,7 +197,7 @@ tnoremap <Leader>a <C-W><C-W>:Ack!<Space>
 
 " Make Ack.vim use Ag if possible (much faster)
 if executable('ag')
-  let g:ackprg = 'ag --hidden --vimgrep'
+  let g:ackprg = 'ag --hidden --ignore .git --vimgrep'
 endif
 
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
