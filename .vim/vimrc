@@ -382,3 +382,15 @@ function OpenOrCloseDiff()
         SignifyDiff
     endif
 endfunction
+
+" Open FZF. The selected file will get opened in the current window.
+nnoremap <Leader>ff :FZF<CR>
+nnoremap <Leader>ft :Tags<CR>
+nnoremap <Leader>fl :Ag<CR>
+
+" Override fzf.vim's version because it does not include the options below
+" Option --color-match is here to avoid the whole line to be highlighted as a
+" match, which makes the result less readable.
+" Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore tags --color-match "39;49"', <bang>0)
+
