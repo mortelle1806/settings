@@ -167,7 +167,7 @@ endfunction
 nnoremap <Leader>p :set paste! paste?<CR>
 
 " Toggle search results highlighting
-nnoremap <Leader>hl :set hlsearch! hlsearch?<CR>
+nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
 
 " Toggle showing whitespace characters
 nnoremap <Leader>ws :set list! list?<CR>
