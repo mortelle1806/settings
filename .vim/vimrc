@@ -177,9 +177,12 @@ set listchars=tab:>-,trail:·,eol:$
 
 " Go to previous error in quickfix window
 " Go to next error in quickfix window
-" NOTE: This overrides the ( and ) which are useful but I don't use so far.
-nnoremap ( :cp<CR>
-nnoremap ) :cn<CR>
+" NOTE: This overrides the ( and ) built-in shortcuts, which are
+" useful but I don't use so far.
+" NOTE: Cannot use nnoremap here, explanation:
+" https://www.reddit.com/r/vim/comments/78izt4/please_help_understand_how_to_use_plug_mapping/
+nmap ( <Plug>(qf_qf_previous)
+nmap ) <Plug>(qf_qf_next)
 
 " Use vim-bufkill buffer backward-forward commands because they successfully
 " avoid that an open built-in terminal buffer gets used. In fact it seems that
