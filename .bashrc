@@ -127,3 +127,8 @@ export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
 export EDITOR=/usr/bin/vim
+
+# Load FZF. Make sure to be able to browse hidden files too.
+# Source: https://github.com/junegunn/fzf/issues/634
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
