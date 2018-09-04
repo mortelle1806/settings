@@ -285,8 +285,10 @@ nnoremap <Leader>r :e<CR>
 " Start a terminal window at the bottom
 nnoremap <Leader>t :bo term ++rows=15<CR>
 
-" Exit current terminal window even if some typed text has not been sent yet
-tnoremap <Leader>t <C-W>q
+" Exit current terminal window even if some typed text has not been sent yet.
+" Also, it does not leave the buffer dangling, which would otherwise prevent
+" quitting vim without a ! override (because a 'job' would still be running)
+tnoremap <Leader>t <C-W>:BD!<CR>:q<CR>
 
 " Activate patience algorithm by default.
 " Can switch on the fly to another algorithm with :EnhancedDiff <...>
