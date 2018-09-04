@@ -41,3 +41,6 @@
 [submodule ".vim/bundle/vim-filebeagle"]
 	path = .vim/bundle/vim-filebeagle
 	url = https://github.com/jeetsukumaran/vim-filebeagle.git
+[submodule ".bash-git-prompt"]
+	path = .bash-git-prompt
+	url = https://github.com/magicmonty/bash-git-prompt.git
