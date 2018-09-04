@@ -30,6 +30,37 @@ alias gsu='git status -u'
 alias gt='git tag'
 alias gtd='git tag -d'
 
+# Source git completion file to be able to use __git_complete, which allows
+# completion on bash aliases such as 'gco' for 'git checkout' 
+# NOTE: This path works for Ubuntu 16.04 but may not be the same for other distros.
+[ -f /usr/share/bash-completion/completions/git ] && . /usr/share/bash-completion/completions/git
+
+__git_complete ga _git_add
+__git_complete gaa _git_add
+__git_complete gai _git_add
+__git_complete gap _git_add
+__git_complete gb _git_branch
+__git_complete gbd _git_branch
+__git_complete gc _git_commit
+__git_complete gca _git_commit
+__git_complete gcam _git_commit
+__git_complete gcm _git_commit
+__git_complete gco _git_checkout
+__git_complete gcob _git_checkout
+__git_complete gcom _git_checkout
+__git_complete gd _git_diff
+__git_complete gdc _git_diff
+__git_complete gdt _git_difftool
+__git_complete gdtc _git_difftool
+__git_complete gl _git_log
+__git_complete gld _git_log
+__git_complete gp _git_push
+__git_complete gpt _git_push
+__git_complete gs _git_status
+__git_complete gsu _git_status
+__git_complete gt _git_tag
+__git_complete gtd _git_tag
+
 # ----------------------
 # IDEs
 # ----------------------
