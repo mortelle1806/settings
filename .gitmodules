@@ -38,3 +38,6 @@
 [submodule ".vim/bundle/vim-qf"]
 	path = .vim/bundle/vim-qf
 	url = https://github.com/romainl/vim-qf.git
+[submodule ".vim/bundle/vim-filebeagle"]
+	path = .vim/bundle/vim-filebeagle
+	url = https://github.com/jeetsukumaran/vim-filebeagle.git

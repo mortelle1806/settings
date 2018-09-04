@@ -404,3 +404,12 @@ nnoremap <Leader>fl :Ag<CR>
 " Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore tags --color-match "39;49"', <bang>0)
 
+" Prevent vim-filebeagle from overriding our mappings 
+let g:filebeagle_suppress_keymaps = 1
+
+nmap <Leader>e <Plug>FileBeagleOpenCurrentWorkingDir
+nmap <Leader>E <Plug>FileBeagleOpenCurrentBufferDir
+
+let g:filebeagle_show_hidden = 1
+
+
