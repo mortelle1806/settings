@@ -176,22 +176,6 @@ nnoremap <Leader>ws :set list! list?<CR>
 " Show the most important whitespace characters
 set listchars=tab:>-,trail:·,eol:$
 
-" Go to previous error in quickfix window
-" Go to next error in quickfix window
-" NOTE: This overrides the ( and ) built-in shortcuts, which are
-" useful but I don't use so far.
-" NOTE: Cannot use nnoremap here, explanation:
-" https://www.reddit.com/r/vim/comments/78izt4/please_help_understand_how_to_use_plug_mapping/
-nmap ( <Plug>(qf_qf_previous)
-nmap ) <Plug>(qf_qf_next)
-
-" Use vim-bufkill buffer backward-forward commands because they successfully
-" avoid that an open built-in terminal buffer gets used. In fact it seems that
-" it successfully cycles only in buffers actually opened in the current
-" window, which is exactly what I want.
-nnoremap _ :BB<CR>
-nnoremap + :BF<CR>
-
 " " Run search on word under cursor with Ack.vim
 " Note: <C-R><C-W> inserts word under cursor when already in command mode)
 " Note: Could have used g:ack_use_cword_for_empty_search to avoid the
@@ -418,4 +402,70 @@ nmap <Leader>E <Plug>FileBeagleOpenCurrentBufferDir
 
 let g:filebeagle_show_hidden = 1
 
+" Previous/next window
+nmap [w :wincmd W<CR>
+nmap ]w :wincmd w<CR>
+tmap [w <C-W>:wincmd W<CR>
+tmap ]w <C-W>:wincmd w<CR>
+
+" Previous/next buffer (original commands)
+nmap [b :bprevious<CR>
+nmap ]b :bnext<CR>
+tmap [b <C-W>:bprevious<CR>
+tmap ]b <C-W>:bnext<CR>
+
+" Previous/next buffer (only cycles through buffers opened in current window) 
+" NOTE: Use vim-bufkill buffer backward-forward commands because they successfully
+" avoid that an open built-in terminal buffer gets used. In fact it seems that
+" it successfully cycles only in buffers actually opened in the current
+" window, which is exactly what I want.
+nmap_[B :BB<CR>
+nmap ]B :BF<CR>
+tmap_[B <C-W>:BB<CR>
+tmap ]B <C-W>:BF<CR>
+
+" Previous/next tab
+nmap [T :tabprevious<CR>
+nmap ]T :tabnext<CR>
+tmap [T <C-W>:tabprevious<CR>
+tmap ]T <C-W>:tabnext<CR>
+
+" Previous/next tag
+nmap [t :tprevious<CR>
+nmap ]t :tnext<CR>
+tmap [t <C-W>:tprevious<CR>
+tmap ]t <C-W>:tnext<CR>
+
+" Go to previous error in quickfix window
+" Go to next error in quickfix window
+" NOTE: This overrides the ( and ) built-in shortcuts, which are
+" useful but I don't use so far.
+" NOTE: Cannot use nnoremap here, explanation:
+" https://www.reddit.com/r/vim/comments/78izt4/please_help_understand_how_to_use_plug_mapping/
+nmap ( <Plug>(qf_qf_previous)
+nmap ) <Plug>(qf_qf_next)
+
+" Previous/next entry in quickfix list (vim-qf plugin, with wrapping)
+nmap [q <Plug>(qf_qf_previous)
+nmap ]q <Plug>(qf_qf_next)
+tmap [q <Plug>(qf_qf_previous)
+tmap ]q <Plug>(qf_qf_next)
+
+" Previous/next file in quickfix list (original commands, no wrapping)
+nmap [Q :cNfile<CR>
+nmap ]Q :cnfile<CR>
+tmap [Q <C-W>:cNfile<CR>
+tmap ]Q <C-W>:cnfile<CR>
+
+" Previous/next entry in location list (vim-qf plugin, with wrapping)
+nmap [l <Plug>(qf_loc_previous)
+nmap ]l <Plug>(qf_loc_next)
+tmap [l <Plug>(qf_loc_previous)
+tmap ]l <Plug>(qf_loc_next)
+
+" Previous/next file in location list (original commands, no wrapping)
+nmap [L :lNfile<CR>
+nmap ]L :lnfile<CR>
+tmap [L <C-W>:lNfile<CR>
+tmap ]L <C-W>:lnfile<CR>
 
