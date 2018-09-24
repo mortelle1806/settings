@@ -16,6 +16,9 @@ if &diff
     call add(g:pathogen_disabled, 'omnisharp-vim')
 endif
 
+call add(g:pathogen_disabled, 'omnisharp-vim')
+call add(g:pathogen_disabled, 'nerdtree')
+
 " Pathogen
 execute pathogen#infect()
 syntax on
@@ -314,7 +317,8 @@ set clipboard-=autoselect
 "autocmd TerminalOpen * set nobuflisted
 
 " Not vimdiff?
-if &diff == 0
+"if &diff == 0
+if 0
     let g:OmniSharp_server_path = '/mnt/f/tools/omnisharp.http-win-x64/OmniSharp.exe'
     let g:OmniSharp_translate_cygwin_wsl = 1
 
