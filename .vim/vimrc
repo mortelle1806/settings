@@ -68,7 +68,9 @@ set linebreak
 set scrolloff=5
 
 " Allows using the mouse to resize window splits!
-set mouse=n
+" NOTE: Disabled because it prevents using copy-paste by mouse (the only way)
+" in wsltty terminal.
+"set mouse=n
 
 " Scroll the viewport (without moving the cursor) 3x faster
 nnoremap <C-e> 3<C-e>
