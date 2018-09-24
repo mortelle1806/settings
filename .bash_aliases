@@ -52,8 +52,10 @@ __git_complete gd _git_diff
 __git_complete gdc _git_diff
 __git_complete gdt _git_difftool
 __git_complete gdtc _git_difftool
+__git_complete gf _git_fetch
 __git_complete gl _git_log
 __git_complete gld _git_log
+__git_complete gm _git_merge
 __git_complete gp _git_push
 __git_complete gpt _git_push
 __git_complete gs _git_status
