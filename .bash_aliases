@@ -66,9 +66,15 @@ __git_complete gtd _git_tag
 # ----------------------
 # IDEs
 # ----------------------
-alias sds='vim -S ~/SharpBuild.DashboardService.vim'
+alias ds='vim -S ~/DashboardService.vim'
+alias dsc='vim -S ~/DashboardService.Client.vim'
+alias dsp='vim -S ~/DashboardService.Puncher.vim'
 alias utc='vim -S ~/Ubisoft.TeamCity.vim'
+alias utcm='vim -S ~/Ubisoft.TeamCity.Monitor.vim'
+alias sss='vim -S ~/Settings.vim'
 alias tcs='vim -S ~/TeamCitySharp.vim'
 alias tb='vim -S ~/TeaBox.vim'
 alias tbs='vim -S ~/TeaBox.Scripts.vim'
+alias tdsp='vim -S ~/TeaBox.DashboardService.Puncher.vim'
+alias p4n='vim -S ~/P4.net.vim'
 
