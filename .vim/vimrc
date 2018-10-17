@@ -379,9 +379,16 @@ function OpenOrCloseDiff()
 endfunction
 
 " Open FZF. The selected file will get opened in the current window.
+nnoremap <Leader>F :FZF<CR>
+tnoremap <Leader>F <C-W>:FZF<CR>
 nnoremap <Leader>ff :FZF<CR>
+tnoremap <Leader>ff <C-W>:FZF<CR>
 nnoremap <Leader>ft :Tags<CR>
+tnoremap <Leader>ft <C-W>:Tags<CR>
 nnoremap <Leader>fl :Ag<CR>
+tnoremap <Leader>fl <C-W>:Ag<CR>
+nnoremap <Leader>fb :Buffers<CR>
+tnoremap <Leader>fb <C-W>:Buffers<CR>
 
 " Override fzf.vim's version because it does not include the options below
 " Option --color-match is here to avoid the whole line to be highlighted as a
