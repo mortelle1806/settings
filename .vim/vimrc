@@ -64,7 +64,7 @@ set expandtab
 " Will not cut words in the middle when wrap is on
 set linebreak
 
-"This makes sure a minimum number of lines is always visible above the cursor
+" This makes sure a minimum number of lines is always visible above the cursor
 set scrolloff=5
 
 " Allows using the mouse to resize window splits!
