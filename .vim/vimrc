@@ -474,3 +474,9 @@ nmap ]L :lnfile<CR>
 tmap [L <C-W>:lNfile<CR>
 tmap ]L <C-W>:lnfile<CR>
 
+" Go to first location of tag
+nmap gt :exe "tag " . expand("<cword>")<CR>
+
+" Open preview window to first location of tag
+nmap gp :exe "ptag " . expand("<cword>")<CR>
+
