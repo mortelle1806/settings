@@ -1,10 +1,10 @@
 # ----------------------
 # Git Aliases
 # ----------------------
-alias ga='git add'
-alias gaa='git add .'
-alias gai='git add -i'
-alias gap='git add -p'
+alias ga='git add -v'
+alias gaa='git add -v .'
+alias gai='git add -v -i'
+alias gap='git add -v -p'
 alias gb='git branch'
 alias gbd='git branch --delete '
 alias gc='git commit'
