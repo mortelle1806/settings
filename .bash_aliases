@@ -83,6 +83,8 @@ alias p4n='vim -S ~/P4.net.vim'
 # MISC
 # ----------------------
 
+alias tmux='tmux -2'
+
 alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
 
 alias ll='ls -l'
