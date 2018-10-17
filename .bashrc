@@ -126,4 +126,5 @@ export VISUAL=/usr/bin/vim
 # Load FZF. Make sure to be able to browse hidden files too.
 # Source: https://github.com/junegunn/fzf/issues/634
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git -g ""'
+export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore tags -g ""'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
