@@ -399,8 +399,11 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --i
 " Prevent vim-filebeagle from overriding our mappings 
 let g:filebeagle_suppress_keymaps = 1
 
-nmap <Leader>e <Plug>FileBeagleOpenCurrentWorkingDir
-nmap <Leader>E <Plug>FileBeagleOpenCurrentBufferDir
+nmap <Leader>e :FileBeagleBufferDir<CR>
+tmap <Leader>e <C-W>:FileBeagleBufferDir<CR>
+
+nmap <Leader>E :FileBeagle<CR>
+tmap <Leader>E <C-W>:FileBeagle<CR>
 
 let g:filebeagle_show_hidden = 1
 
