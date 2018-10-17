@@ -79,3 +79,12 @@ alias tbs='vim -S ~/TeaBox.Scripts.vim'
 alias tdsp='vim -S ~/TeaBox.DashboardService.Puncher.vim'
 alias p4n='vim -S ~/P4.net.vim'
 
+# ----------------------
+# MISC
+# ----------------------
+
+alias ll='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+
+alias v='vim'
