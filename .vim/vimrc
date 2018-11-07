@@ -392,6 +392,7 @@ nnoremap <Leader>fl :Ag<CR>
 tnoremap <Leader>fl <C-W>:Ag<CR>
 nnoremap <Leader>fb :Buffers<CR>
 tnoremap <Leader>fb <C-W>:Buffers<CR>
+nnoremap , :Buffers<CR>
 
 " Override fzf.vim's version because it does not include the options below
 " Option --color-match is here to avoid the whole line to be highlighted as a
