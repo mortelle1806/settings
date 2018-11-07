@@ -119,3 +119,17 @@ alias v='vim'
 alias ag='ag --color-match "39;91"'
 
 alias googler='googler --url-handler=$HOME/opera.exe '
+
+# Call batch cmd without many characters. Example: c ping 127.0.0.1
+function c {
+    args=$@
+    cmd /c $args
+}
+
+# https://github.com/junegunn/fzf/issues/429
+function vf {
+  local line
+  #line=`ag --nocolor "$1" | fzf` \
+  line=`ag --nocolor . | fzf` \
+    && vim $(cut -d':' -f1 <<< "$line") +$(cut -d':' -f2 <<< "$line")
+}
