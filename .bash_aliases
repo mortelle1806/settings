@@ -88,6 +88,20 @@ alias p4rv='p4 revert'
 alias p4ro='p4 reopen -c'
 alias p4s='p4 submit -c'
 
+function p4dc {
+    # https://stackoverflow.com/questions/1121557/how-do-i-get-diffs-of-all-the-files-in-a-pending-perforce-changelist
+    p4 opened -c $1 | sed -e 's/#.*//' | p4 -x - diff | less
+}
+
+function p4dct {
+    # https://stackoverflow.com/questions/1121557/how-do-i-get-diffs-of-all-the-files-in-a-pending-perforce-changelist
+    P4DIFF=vimdiff sh -c "p4 opened -c $1 | sed -e 's/#.*//' | p4 -x - diff"
+}
+
+function p4h {
+    p4 help $1 | less
+}
+
 # ----------------------
 # MISC
 # ----------------------
