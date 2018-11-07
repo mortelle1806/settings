@@ -364,7 +364,7 @@ let g:signify_vcs_list = [ 'git', 'perforce' ]
 
 " Open a diff tab or close it with the same shortcut
 nnoremap <Leader>d :call OpenOrCloseDiff()<CR>
-function OpenOrCloseDiff()
+function! OpenOrCloseDiff() " Add '!' to allow hot-reload of vimrc
     if &diff
         " This closes the diff tab that gets opened by :SignifyDiff
         tabc
