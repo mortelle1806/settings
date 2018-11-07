@@ -72,6 +72,10 @@ set scrolloff=5
 " in wsltty terminal.
 "set mouse=n
 
+" Disable the auto add of end of line character at end of file if missing.
+" This is to avoid unwanted diffs with Windows users.
+set nofixendofline
+
 " Scroll the viewport (without moving the cursor) 3x faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
