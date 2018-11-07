@@ -68,7 +68,25 @@ __git_complete gt _git_tag
 __git_complete gtd _git_tag
 
 # ----------------------
+# P4 Aliases
 # ----------------------
+alias p4a='p4 add'
+alias p4c='p4 change'
+alias p4cd='p4 change -d'
+alias p4cl='p4 changes -m1 -t'
+alias p4co='p4 change -o | less'
+alias p4cs='p4 changes -spending -u$USER'
+alias p4csp='p4 changes -spending -u$USER | less'
+alias p4cu='p4 change -u'
+alias p4d='p4 diff'
+alias p4dt='P4DIFF=vimdiff p4 diff'
+alias p4ds='p4 describe -s'
+alias p4e='p4 edit'
+alias p4o='p4 opened | less'
+alias p4oc='p4 opened $PWD/... | less'
+alias p4rv='p4 revert'
+alias p4ro='p4 reopen -c'
+alias p4s='p4 submit -c'
 
 # ----------------------
 # MISC
