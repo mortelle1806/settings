@@ -99,3 +99,7 @@ alias la='ls -a'
 alias lla='ls -la'
 
 alias v='vim'
+
+# Less confusing colors by default
+# Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
+alias ag='ag --color-match "39;91"'
