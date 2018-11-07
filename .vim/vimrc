@@ -398,7 +398,9 @@ nnoremap , :Buffers<CR>
 " Option --color-match is here to avoid the whole line to be highlighted as a
 " match, which makes the result less readable.
 " Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
-command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore tags --color-match "39;49"', <bang>0)
+" The delimiter option is here to only match on line content, not on the file
+" name like default. See https://github.com/junegunn/fzf.vim/issues/346
+command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --ignore obj --ignore tags --color-match "1;36"', {'options': '--delimiter : --nth 4..'}, <bang>0)
 
 " Prevent vim-filebeagle from overriding our mappings 
 let g:filebeagle_suppress_keymaps = 1
