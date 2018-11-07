@@ -374,6 +374,9 @@ function! OpenOrCloseDiff() " Add '!' to allow hot-reload of vimrc
     endif
 endfunction
 
+" Vim-perforce: Try to open the file in perforce when modifying a read-only file
+let g:perforce_open_on_change = 1
+
 " Disable automatic folds, especially useful for diffs: when a code diff is
 " reverted by a user action, auto-folding can be very confusing visually.
 " Just setting nofoldenable in vimrc does not work for vimdiff, which
