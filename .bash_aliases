@@ -103,3 +103,5 @@ alias v='vim'
 # Less confusing colors by default
 # Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 alias ag='ag --color-match "39;91"'
+
+alias googler='googler --url-handler=$HOME/opera.exe '
