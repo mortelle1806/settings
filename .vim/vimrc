@@ -374,6 +374,13 @@ function! OpenOrCloseDiff() " Add '!' to allow hot-reload of vimrc
     endif
 endfunction
 
+" Disable automatic folds, especially useful for diffs: when a code diff is
+" reverted by a user action, auto-folding can be very confusing visually.
+" Just setting nofoldenable in vimrc does not work for vimdiff, which
+" overrides it later, even if using WinEnter events.
+" Tip found here: https://stackoverflow.com/questions/5017009/confusion-about-vim-folding-how-to-disable
+set diffopt+=context:99999
+
 " Open FZF. The selected file will get opened in the current window.
 nnoremap <Leader>F :FZF<CR>
 tnoremap <Leader>F <C-W>:FZF<CR>
