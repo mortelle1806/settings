@@ -94,8 +94,6 @@ alias p4s='p4 submit -c'
 
 alias tmux='tmux -2'
 
-alias r='ranger --choosedir=$HOME/.rangerdir; LASTDIR=`cat $HOME/.rangerdir`; cd "$LASTDIR"'
-
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
