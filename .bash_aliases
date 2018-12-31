@@ -133,4 +133,19 @@ function vf {
   #line=`ag --nocolor "$1" | fzf` \
   line=`ag --nocolor . | fzf` \
     && vim $(cut -d':' -f1 <<< "$line") +$(cut -d':' -f2 <<< "$line")
+
+function sba {
+    . ~/.bash_aliases
 }
+
+function sbr {
+    . ~/.bashrc
+}
+
+alias vrc="vim -c 'cd ~/.vim' ~/.vim/vimrc"
+alias vff="vim -c 'FZF'"
+alias vfl="vim -c 'Ag'"
+
+# Allow doing |l for quick piping to less
+alias l="less"
+
