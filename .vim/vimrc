@@ -278,6 +278,19 @@ if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 
+" Toggle for ignoring whitespace in diff mode
+" http://vim.wikia.com/wiki/Ignore_white_space_in_vimdiff
+if &diff
+    map <Leader>wi :call IwhiteToggle()<CR>
+    function! IwhiteToggle()
+        if &diffopt =~ 'iwhite'
+            set diffopt-=iwhite
+        else
+            set diffopt+=iwhite
+        endif
+    endfunction
+endif
+
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt\\|tmux"
     " use an cursor of a certain color in insert mode
