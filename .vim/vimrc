@@ -76,6 +76,10 @@ set scrolloff=5
 " This is to avoid unwanted diffs with Windows users.
 set nofixendofline
 
+" Make both horizontal and vertical splits do the split where I naturally expect them to
+set splitright
+set splitbelow
+
 " Scroll the viewport (without moving the cursor) 3x faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
