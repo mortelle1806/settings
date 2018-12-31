@@ -10,19 +10,12 @@
 [submodule ".vim/bundle/vim-markify"]
 	path = .vim/bundle/vim-markify
 	url = https://github.com/dhruvasagar/vim-markify.git
-[submodule ".vim/bundle/omnisharp-vim"]
-	path = .vim/bundle/omnisharp-vim
-    url = https://github.com/mortelle1806/omnisharp-vim.git
-    branch = custom
 [submodule ".vim/bundle/vim-bufkill"]
 	path = .vim/bundle/vim-bufkill
 	url = https://github.com/qpkorr/vim-bufkill.git
 [submodule ".vim/bundle/nerdcommenter"]
 	path = .vim/bundle/nerdcommenter
 	url = https://github.com/scrooloose/nerdcommenter.git
-[submodule ".vim/bundle/nerdtree"]
-	path = .vim/bundle/nerdtree
-	url = https://github.com/scrooloose/nerdtree.git
 [submodule ".vim/bundle/HiCursorWords"]
 	path = .vim/bundle/HiCursorWords
 	url = https://github.com/jkerian/HiCursorWords.git
