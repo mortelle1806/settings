@@ -410,6 +410,8 @@ nnoremap <Leader>ft :Tags<CR>
 tnoremap <Leader>ft <C-W>:Tags<CR>
 nnoremap <Leader>fl :Ag<CR>
 tnoremap <Leader>fl <C-W>:Ag<CR>
+nnoremap <Leader>fL :BLines<CR>
+tnoremap <Leader>fL <C-W>:BLines<CR>
 nnoremap <Leader>fb :Buffers<CR>
 tnoremap <Leader>fb <C-W>:Buffers<CR>
 nnoremap , :Buffers<CR>
