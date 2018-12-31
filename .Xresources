@@ -15,9 +15,8 @@ URxvt.colorIT:          SteelBlue
 URxvt.cursorColor:      grey90
 URxvt.highlightColor:   grey25
 
-
-URxvt.font:			xft:Bitstream Vera Sans Mono:size=10:antialias=true:hinting=true
-URxvt.boldFont:		xft:Bitstream Vera Sans Mono:bold:size=10:antialias=true:hinting=true
+URxvt.font:			xft:Bitstream Vera Sans Mono:size=14:antialias=true:hinting=true
+URxvt.boldFont:		xft:Bitstream Vera Sans Mono:bold:size=14:antialias=true:hinting=true
 URxvt.scrollBar:	false
 URxvt.saveLines:	65535
 URxvt.perl-ext-common: keyboard-select,url-select,clipboard,tabbed
