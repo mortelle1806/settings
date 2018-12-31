@@ -133,6 +133,7 @@ function vf {
   #line=`ag --nocolor "$1" | fzf` \
   line=`ag --nocolor . | fzf` \
     && vim $(cut -d':' -f1 <<< "$line") +$(cut -d':' -f2 <<< "$line")
+}
 
 function sba {
     . ~/.bash_aliases
