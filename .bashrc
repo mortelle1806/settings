@@ -129,3 +129,7 @@ export LIBGL_ALWAYS_INDIRECT=1
 # Source: https://github.com/junegunn/fzf/issues/634
 export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore tags -g ""'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Autocomplete will cycle through possibilities without requiring additional characters even if there is ambiguity
+bind "TAB:menu-complete"
+bind '"\e[Z": menu-complete-backward'
