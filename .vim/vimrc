@@ -69,7 +69,9 @@ set scrolloff=5
 
 " Disable the auto add of end of line character at end of file if missing.
 " This is to avoid unwanted diffs with Windows users.
-set nofixendofline
+if v:version >= 800
+    set nofixendofline
+endif
 
 " Make both horizontal and vertical splits do the split where I naturally expect them to
 set splitright
@@ -146,7 +148,9 @@ set cscopequickfix=s-,c-,d-,i-,t-,e-,g-
 
 " Quick save all and exit without prompt even if a terminal buffer is open
 nnoremap <Leader><Leader> :wa<CR>:qa!<CR>
-tnoremap <Leader><Leader> <C-W>:wa<CR><C-W>:qa!<CR>
+if v:version >= 800
+    tnoremap <Leader><Leader> <C-W>:wa<CR><C-W>:qa!<CR>
+endif
 
 " Don't wrap by default after startup
 set nowrap
@@ -186,7 +190,9 @@ nnoremap <Leader>a :Ack<Space><C-R><C-W><CR>
 " Prepare search in command mode with Ack.vim.
 " User must then type what to look for and validate.
 nnoremap <Leader>A :Ack<Space>
-tnoremap <Leader>A <C-W><C-W>:Ack<Space>
+if v:version >= 800
+    tnoremap <Leader>A <C-W><C-W>:Ack<Space>
+endif
 
 " Make Ack.vim use Ag if possible (much faster)
 if executable('ag')
@@ -205,7 +211,9 @@ let g:HiCursorWords_style='term=NONE cterm=NONE ctermfg=green'
 let g:HiCursorWords_delay=0
 
 " Easy shortcut to switch terminal to Terminal-Normal mode
-tnoremap `` <C-W>N
+if v:version >= 800
+    tnoremap `` <C-W>N
+endif
 
 inoremap <C-B> <3<Space>
 
@@ -342,17 +350,35 @@ set diffopt+=context:99999
 
 " Open FZF. The selected file will get opened in the current window.
 nnoremap <Leader>F :FZF<CR>
-tnoremap <Leader>F <C-W>:FZF<CR>
+if v:version >= 800
+    tnoremap <Leader>F <C-W>:FZF<CR>
+endif
+
 nnoremap <Leader>ff :FZF<CR>
-tnoremap <Leader>ff <C-W>:FZF<CR>
+if v:version >= 800
+    tnoremap <Leader>ff <C-W>:FZF<CR>
+endif
+
 nnoremap <Leader>ft :Tags<CR>
-tnoremap <Leader>ft <C-W>:Tags<CR>
+if v:version >= 800
+    tnoremap <Leader>ft <C-W>:Tags<CR>
+endif
+
 nnoremap <Leader>fl :Ag<CR>
-tnoremap <Leader>fl <C-W>:Ag<CR>
+if v:version >= 800
+    tnoremap <Leader>fl <C-W>:Ag<CR>
+endif
+
 nnoremap <Leader>fL :BLines<CR>
-tnoremap <Leader>fL <C-W>:BLines<CR>
+if v:version >= 800
+    tnoremap <Leader>fL <C-W>:BLines<CR>
+endif
+
 nnoremap <Leader>fb :Buffers<CR>
-tnoremap <Leader>fb <C-W>:Buffers<CR>
+if v:version >= 800
+    tnoremap <Leader>fb <C-W>:Buffers<CR>
+endif
+
 nnoremap , :Buffers<CR>
 
 " Override fzf.vim's version because it does not include the options below
@@ -367,24 +393,32 @@ command! -bang -nargs=* Ag call fzf#vim#ag(<q-args>, '--hidden --ignore .git --i
 let g:filebeagle_suppress_keymaps = 1
 
 nmap <Leader>e :FileBeagleBufferDir<CR>
-tmap <Leader>e <C-W>:FileBeagleBufferDir<CR>
+if v:version >= 800
+    tmap <Leader>e <C-W>:FileBeagleBufferDir<CR>
+endif
 
 nmap <Leader>E :FileBeagle<CR>
-tmap <Leader>E <C-W>:FileBeagle<CR>
+if v:version >= 800
+    tmap <Leader>E <C-W>:FileBeagle<CR>
+endif
 
 let g:filebeagle_show_hidden = 1
 
 " Previous/next window
 nmap [w :wincmd W<CR>
 nmap ]w :wincmd w<CR>
-tmap [w <C-W>:wincmd W<CR>
-tmap ]w <C-W>:wincmd w<CR>
+if v:version >= 800
+    tmap [w <C-W>:wincmd W<CR>
+    tmap ]w <C-W>:wincmd w<CR>
+endif
 
 " Previous/next buffer (original commands)
 nmap [b :bprevious<CR>
 nmap ]b :bnext<CR>
-tmap [b <C-W>:bprevious<CR>
-tmap ]b <C-W>:bnext<CR>
+if v:version >= 800
+    tmap [b <C-W>:bprevious<CR>
+    tmap ]b <C-W>:bnext<CR>
+endif
 
 " Previous/next buffer (only cycles through buffers opened in current window) 
 " NOTE: Use vim-bufkill buffer backward-forward commands because they successfully
@@ -393,20 +427,26 @@ tmap ]b <C-W>:bnext<CR>
 " window, which is exactly what I want.
 nmap_[B :BB<CR>
 nmap ]B :BF<CR>
-tmap_[B <C-W>:BB<CR>
-tmap ]B <C-W>:BF<CR>
+if v:version >= 800
+    tmap_[B <C-W>:BB<CR>
+    tmap ]B <C-W>:BF<CR>
+endif
 
 " Previous/next tab
 nmap [T :tabprevious<CR>
 nmap ]T :tabnext<CR>
-tmap [T <C-W>:tabprevious<CR>
-tmap ]T <C-W>:tabnext<CR>
+if v:version >= 800
+    tmap [T <C-W>:tabprevious<CR>
+    tmap ]T <C-W>:tabnext<CR>
+endif
 
 " Previous/next tag
 nmap [t :tprevious<CR>
 nmap ]t :tnext<CR>
-tmap [t <C-W>:tprevious<CR>
-tmap ]t <C-W>:tnext<CR>
+if v:version >= 800
+    tmap [t <C-W>:tprevious<CR>
+    tmap ]t <C-W>:tnext<CR>
+endif
 
 " Go to previous error in quickfix window
 " Go to next error in quickfix window
@@ -420,26 +460,34 @@ nmap ) <Plug>(qf_qf_next)
 " Previous/next entry in quickfix list (vim-qf plugin, with wrapping)
 nmap [q <Plug>(qf_qf_previous)
 nmap ]q <Plug>(qf_qf_next)
-tmap [q <Plug>(qf_qf_previous)
-tmap ]q <Plug>(qf_qf_next)
+if v:version >= 800
+    tmap [q <Plug>(qf_qf_previous)
+    tmap ]q <Plug>(qf_qf_next)
+endif
 
 " Previous/next file in quickfix list (original commands, no wrapping)
 nmap [Q :cNfile<CR>
 nmap ]Q :cnfile<CR>
-tmap [Q <C-W>:cNfile<CR>
-tmap ]Q <C-W>:cnfile<CR>
+if v:version >= 800
+    tmap [Q <C-W>:cNfile<CR>
+    tmap ]Q <C-W>:cnfile<CR>
+endif
 
 " Previous/next entry in location list (vim-qf plugin, with wrapping)
 nmap [l <Plug>(qf_loc_previous)
 nmap ]l <Plug>(qf_loc_next)
-tmap [l <Plug>(qf_loc_previous)
-tmap ]l <Plug>(qf_loc_next)
+if v:version >= 800
+    tmap [l <Plug>(qf_loc_previous)
+    tmap ]l <Plug>(qf_loc_next)
+endif
 
 " Previous/next file in location list (original commands, no wrapping)
 nmap [L :lNfile<CR>
 nmap ]L :lnfile<CR>
-tmap [L <C-W>:lNfile<CR>
-tmap ]L <C-W>:lnfile<CR>
+if v:version >= 800
+    tmap [L <C-W>:lNfile<CR>
+    tmap ]L <C-W>:lnfile<CR>
+endif
 
 " Go to first location of tag
 nmap gt :exe "tag " . expand("<cword>")<CR>
