@@ -19,7 +19,7 @@ URxvt.font:			xft:Bitstream Vera Sans Mono:size=14:antialias=true:hinting=true
 URxvt.boldFont:		xft:Bitstream Vera Sans Mono:bold:size=14:antialias=true:hinting=true
 URxvt.scrollBar:	false
 URxvt.saveLines:	65535
-URxvt.perl-ext-common: keyboard-select,url-select,clipboard,tabbed
+URxvt.perl-ext-common: keyboard-select,url-select,clipboard
 URxvt.keysym.M-a: perl:keyboard-select:activate
 URxvt.keysym.M-s: perl:keyboard-select:search
 URxvt.keysym.M-u: perl:url-select:select_next
@@ -45,8 +45,3 @@ URxvt.keysym.KP_7:      7
 URxvt.keysym.KP_8:      8
 URxvt.keysym.KP_9:      9
 URxvt.keysym.KP_0:      0
-
-URxvt.tabbed.tabbar-fg: 2
-URxvt.tabbed.tabbar-bg: 0
-URxvt.tabbed.tab-fg: 3
-URxvt.tabbed.tab-bg: 0
