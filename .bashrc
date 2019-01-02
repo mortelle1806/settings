@@ -118,8 +118,12 @@ export LESS_TERMCAP_so=$'\e[01;33m'
 export LESS_TERMCAP_ue=$'\e[0m'
 export LESS_TERMCAP_us=$'\e[1;4;31m'
 
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+export EDITOR=/usr/local/bin/vim
+export VISUAL=/usr/local/bin/vim
+
+export DISPLAY=:0
+export LIBGL_ALWAYS_INDIRECT=1
+
 
 # Load FZF. Make sure to be able to browse hidden files too.
 # Source: https://github.com/junegunn/fzf/issues/634

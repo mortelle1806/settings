@@ -69,41 +69,6 @@ __git_complete gt _git_tag
 __git_complete gtd _git_tag
 
 # ----------------------
-# P4 Aliases
-# ----------------------
-alias p4a='p4 add'
-alias p4c='p4 change'
-alias p4cd='p4 change -d'
-alias p4cl='p4 changes -m1 -t'
-alias p4co='p4 change -o | less'
-alias p4cs='p4 changes -spending -u$USER'
-alias p4csp='p4 changes -spending -u$USER | less'
-alias p4cu='p4 change -u'
-alias p4d='p4 diff'
-alias p4dt='P4DIFF=vimdiff p4 diff'
-alias p4ds='p4 describe -s'
-alias p4e='p4 edit'
-alias p4o='p4 opened | less'
-alias p4oc='p4 opened $PWD/... | less'
-alias p4rv='p4 revert'
-alias p4ro='p4 reopen -c'
-alias p4s='p4 submit -c'
-
-function p4dc {
-    # https://stackoverflow.com/questions/1121557/how-do-i-get-diffs-of-all-the-files-in-a-pending-perforce-changelist
-    p4 opened -c $1 | sed -e 's/#.*//' | p4 -x - diff | less
-}
-
-function p4dct {
-    # https://stackoverflow.com/questions/1121557/how-do-i-get-diffs-of-all-the-files-in-a-pending-perforce-changelist
-    P4DIFF=vimdiff sh -c "p4 opened -c $1 | sed -e 's/#.*//' | p4 -x - diff"
-}
-
-function p4h {
-    p4 help $1 | less
-}
-
-# ----------------------
 # MISC
 # ----------------------
 
@@ -119,20 +84,10 @@ alias v='vim'
 # Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 alias ag='ag --color-match "39;91"'
 
-alias googler='googler --url-handler=$HOME/opera.exe '
-
 # Call batch cmd without many characters. Example: c ping 127.0.0.1
 function c {
     args=$@
     cmd /c $args
-}
-
-# https://github.com/junegunn/fzf/issues/429
-function vf {
-  local line
-  #line=`ag --nocolor "$1" | fzf` \
-  line=`ag --nocolor . | fzf` \
-    && vim $(cut -d':' -f1 <<< "$line") +$(cut -d':' -f2 <<< "$line")
 }
 
 function sba {
@@ -155,3 +110,4 @@ alias l="less"
 # So even though each tmux window uses terminal screen-256color by default in my config, force TERM
 # to something that Alpine actually works with.
 alias alpine='TERM=xterm-256color alpine'
+
