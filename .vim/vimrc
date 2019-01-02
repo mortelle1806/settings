@@ -170,7 +170,11 @@ function ToggleWrap()
 endfunction
 
 " Toggle paste with F2 (feedback is shown only when in insert mode)
-set pastetoggle=<Esc>OQ
+if &term =~ "screen"
+    set pastetoggle=<Esc>OQ
+elseif &term =~ "rxvt"
+    set pastetoggle=<Esc>[12~
+endif
 
 " Toggle search results highlighting
 nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
