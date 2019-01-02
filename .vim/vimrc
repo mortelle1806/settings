@@ -357,6 +357,10 @@ endfunction
 " Vim-perforce: Try to open the file in perforce when modifying a read-only file
 let g:perforce_open_on_change = 1
 
+" Vim-perforce: Do not prompt (prompting seems to cause issues when mass
+" editing with :cdo)
+let g:perforce_prompt_on_open = 0
+
 " Disable automatic folds, especially useful for diffs: when a code diff is
 " reverted by a user action, auto-folding can be very confusing visually.
 " Just setting nofoldenable in vimrc does not work for vimdiff, which
