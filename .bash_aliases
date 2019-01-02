@@ -150,3 +150,8 @@ alias vfl="vim -c 'Ag'"
 # Allow doing |l for quick piping to less
 alias l="less"
 
+# In tmux, it is preferable to set terminal to screen-256color for most applications to work properly.
+# Alpine does not support the screen-256color terminfo properly (uses italics instead of reverse).
+# So even though each tmux window uses terminal screen-256color by default in my config, force TERM
+# to something that Alpine actually works with.
+alias alpine='TERM=xterm-256color alpine'
