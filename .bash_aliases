@@ -108,6 +108,9 @@ alias vfl="vim -c 'Ag'"
 # Consider https://github.com/farmergreg/vim-lastplace (ignores git commit messages)
 alias vl='vim -c "normal '\''0"'
 
+# Open vim with a capture of the latest tmux scrollback
+alias vo='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -R -c ":norm Gkk$" $temp_file ; rm $temp_file'
+
 # Allow doing |l for quick piping to less
 alias l="less"
 
