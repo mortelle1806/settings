@@ -24,3 +24,5 @@
 	editor = vim
 [mergetool]
 	keepBackup = false
+[commit]
+	verbose = true
