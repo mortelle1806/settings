@@ -128,8 +128,9 @@ export LIBGL_ALWAYS_INDIRECT=1
 export FZF_DEFAULT_OPTS='--exact'
 
 # Load FZF. Make sure to be able to browse hidden files too.
+# Also follow symlinks
 # Source: https://github.com/junegunn/fzf/issues/634
-export FZF_DEFAULT_COMMAND='ag --hidden --ignore .git --ignore tags -g ""'
+export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git --ignore tags -g ""'
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
 # Autocomplete will cycle through possibilities without requiring additional characters even if there is ambiguity
