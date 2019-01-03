@@ -124,6 +124,8 @@ export VISUAL=/usr/local/bin/vim
 export DISPLAY=:0
 export LIBGL_ALWAYS_INDIRECT=1
 
+# Make exact searches by default. The ' prefix does the opposite (ie. enables fuzzy)
+export FZF_DEFAULT_OPTS='--exact'
 
 # Load FZF. Make sure to be able to browse hidden files too.
 # Source: https://github.com/junegunn/fzf/issues/634
