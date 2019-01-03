@@ -77,11 +77,6 @@ endif
 set splitright
 set splitbelow
 
-" For the auto-pairs plugin.
-" Do not handle back ticks because it's used for exiting insert mode with this
-" vimrc
-let g:AutoPairs = {'(':')', '[':']', '{':'}',"'":"'",'"':'"'}
-
 " Scroll the viewport (without moving the cursor) 3x faster
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
