@@ -37,7 +37,6 @@ set history=1000
 
 syntax enable
 set number
-set relativenumber
 set ruler " shows in status line where you are in the file
 
 set incsearch
