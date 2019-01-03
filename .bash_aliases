@@ -102,6 +102,12 @@ alias vrc="vim -c 'cd ~/.vim' ~/.vim/vimrc"
 alias vff="vim -c 'FZF'"
 alias vfl="vim -c 'Ag'"
 
+# Open vim at last mark before last exit. This means the last edited file and last position.
+# http://vim.wikia.com/wiki/Open_the_last_edited_file
+# https://vi.stackexchange.com/questions/4817/is-there-a-vim-command-line-option-to-edit-last-edited-file
+# Consider https://github.com/farmergreg/vim-lastplace (ignores git commit messages)
+alias vl='vim -c "normal '\''0"'
+
 # Allow doing |l for quick piping to less
 alias l="less"
 
