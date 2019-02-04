@@ -181,8 +181,8 @@ nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
 " Toggle showing whitespace characters
 nnoremap <Leader>ws :set list! list?<CR>
 
-" Show the most important whitespace characters
-set listchars=tab:>-,trail:·,eol:$
+" Show the whitespace characters
+set listchars=space:·,tab:>-,trail:·,eol:$
 
 " " Run search on word under cursor with Ack.vim
 " Note: <C-R><C-W> inserts word under cursor when already in command mode)
