@@ -279,6 +279,9 @@ inoremap <S-Tab> <C-d>
 " Reload current file
 nnoremap <Leader>r :e<CR>
 
+" Replace word under cursor with last yanked text
+nnoremap <C-j> ciw<C-r>0<ESC>
+
 " Activate patience algorithm by default.
 " Can switch on the fly to another algorithm with :EnhancedDiff <...>
 " Enhances diff a lot in some cases.
