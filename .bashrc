@@ -109,9 +109,10 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# Get color support for 'less'
-export LESS="--RAW-CONTROL-CHARS"
+# Ignore case (only if there is no uppercase in search term, see manual)
+export LESS="--RAW-CONTROL-CHARS --ignore-case"
 
+# Get color support for 'less'
 export LESS_TERMCAP_mb=$'\e[1;32m'
 export LESS_TERMCAP_md=$'\e[1;32m'
 export LESS_TERMCAP_me=$'\e[0m'
