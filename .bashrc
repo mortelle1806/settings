@@ -56,10 +56,12 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Note about \j: It contains the number of background jobs
+# https://stackoverflow.com/questions/12646917/show-job-count-in-bash-prompt-only-if-nonzero
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$([ \j -gt 0 ] && echo [\j])\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$([ \j -gt 0 ] && echo [\j])\$ '
 fi
 unset color_prompt force_color_prompt
 
