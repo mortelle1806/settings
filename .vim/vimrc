@@ -528,6 +528,7 @@ endif
 " not available in vim 8.1.
 " Inspired from https://github.com/tpope/vim-fugitive/issues/594#issuecomment-73450823
 function! s:Browse(args)
-    execute 'silent !sensible-browser '.shellescape(a:args, 1).'|:redraw!'
+    execute 'silent !sensible-browser '.shellescape(a:args, 1)
+    redraw!
 endfunction
 command! -nargs=* Browse call <SID>Browse(<q-args>)
