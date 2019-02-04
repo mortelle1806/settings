@@ -535,3 +535,9 @@ function! s:Browse(args)
     redraw!
 endfunction
 command! -nargs=* Browse call <SID>Browse(<q-args>)
+
+" Keep at end of file
+let profile_vimrc = $HOME . "/.profile_vimrc"
+if filereadable(profile_vimrc)
+    execute "source " . profile_vimrc
+endif
