@@ -1,0 +1,113 @@
+" This vimrc file is specifically designed to be used when opening
+" the tmux scrollback buffer and looking to search/yank specific text.
+" It does not load plugins to start as quickly as possible without
+" sacrificing comfort.
+
+" Required when running vim with -u <vimrc>, otherwise compatible is set
+set nocompatible
+
+" This line forces vim to use 256 colors even if it cannot detect this
+" capability in the terminfo description. See tmux FAQ at tag 2.1.
+set t_Co=256
+
+set history=1000
+
+set ruler " shows in status line where you are in the file
+
+set incsearch
+set ignorecase " often you want to ignore case when searching for text
+set smartcase  " will turn on case-sensitivity only if the text to search contains uppercase characters, which is what you often want
+
+" Necessary since switch from vim 7.4 to 8.1.
+set backspace=indent,eol,start
+
+" This makes sure a minimum number of lines is always visible above the cursor
+set scrolloff=5
+
+" Scroll the viewport (without moving the cursor) 3x faster
+nnoremap <C-e> 3<C-e>
+nnoremap <C-y> 3<C-y>
+
+" Reduce number of lines travelled when using <C-D> and <C-U>
+nnoremap <C-d> 7<C-d>
+nnoremap <C-u> 7<C-u>
+
+set noswapfile
+
+set background=dark
+
+colorscheme PaperColor
+
+hi ModeMsg ctermfg=white ctermbg=darkred
+
+" enable status line always
+set laststatus=2
+
+" redraw only when we need to.
+set lazyredraw
+
+set wildmenu            " visual autocomplete for command menu
+
+" Quick save all and exit without prompt even if a terminal buffer is open
+nnoremap <Leader><Leader> :wa<CR>:qa!<CR>
+if v:version >= 800
+    tnoremap <Leader><Leader> <C-W>:wa<CR><C-W>:qa!<CR>
+endif
+
+" Don't wrap by default after startup
+set nowrap
+
+nnoremap <Leader>ww :call ToggleWrap()<CR>
+function ToggleWrap()
+    " Toggle wrap in current windows and show new value in current window.
+    set wrap!
+    set wrap?
+endfunction
+
+set hlsearch
+
+" Toggle search results highlighting
+nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
+
+" Toggle showing whitespace characters
+nnoremap <Leader>ws :set list! list?<CR>
+
+" Show the whitespace characters
+set listchars=space:·,tab:>-,trail:·,eol:$
+
+" https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
+" Double escape clears search pattern
+nnoremap <silent> <Esc><Esc> :let @/=""<CR>
+
+" The following will make the cursor move by display lines when long lines are wrapping
+" Source: http://vim.wikia.com/wiki/Move_cursor_by_display_lines_when_wrapping
+nnoremap j gj
+nnoremap k gk
+vnoremap j gj
+vnoremap k gk
+nnoremap <Down> gj
+nnoremap <Up> gk
+vnoremap <Down> gj
+vnoremap <Up> gk
+inoremap <Down> <C-o>gj
+inoremap <Up> <C-o>gk
+
+" Back tick as replacement for Esc. Tab is good too but as soon as you start
+" programming, you regret it.
+imap ` <Esc>
+vmap ` <Esc>
+
+" Since tilda is now taken in insert mode, provide a way to write a tilda in
+" insert mode using C-V C-V
+inoremap <C-V><C-V> <C-V>u0060
+
+" Makes yanking and pasting use the X clipboards. Prepend it because their is a
+" default value already (probably the exclude statement in the default value
+" is the cause)
+" NOTE: unnamed only works with a WSL setup but not on pure Linux.
+set clipboard^=unnamedplus,unnamed
+
+" Disable default clipboard behavior that makes visual mode copy to clipboard
+" on each change of visual selection.
+set clipboard-=autoselect
+

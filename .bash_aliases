@@ -110,8 +110,43 @@ alias vfl="vim -c 'Ag'"
 # Consider https://github.com/farmergreg/vim-lastplace (ignores git commit messages)
 alias vl='vim -c "normal '\''0"'
 
+# TODO: Factorize this into functions when stable
+
 # Open vim with a capture of the latest tmux scrollback
-alias vo='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -R -c ":norm Gkk$" $temp_file ; rm $temp_file'
+alias vo='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a integer
+alias voi='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /\d\+" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a word
+alias vow='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /\w\+" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a P4 changelist (hack: it looks for a large integer at the beginning and end of a word)
+alias voc='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /\<\d\{5,\}\>" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a Git SHA1 (hack: it looks for a large hexadecimal string)
+alias vos='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /\x\{7,\}" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a full Unix path (very imperfect)
+alias voup='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /[/~][0-9a-z/.\-_]\{3,\}" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a full P4 path (very imperfect)
+alias vopp='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /\/\/[0-9a-z/.\-_]\{3,\}" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Open vim with a capture of the latest tmux scrollback, look for a full Windows path (very imperfect)
+alias vowp='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G$" -c "silent! /[a-z]\:\\\\[0-9a-z.\\\\_\-]\+[0-9a-z]" -c ":norm N" $temp_file ; rm $temp_file'
+
+# Copy to clipboard the last line of output of last command
+alias voll='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && tail -3 $temp_file | head -1 | xclip -in -selection clipboard ; rm $temp_file ; echo "Last line copied to clipboard."'
+
+# Copy to clipboard the last 2 lines of output of last command
+alias voll2='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && tail -4 $temp_file | head -2 | xclip -in -selection clipboard ; rm $temp_file ; echo "Last 2 lines copied to clipboard."'
+
+# Copy to clipboard the last 2 lines of output of last command
+alias voll3='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && tail -5 $temp_file | head -3 | xclip -in -selection clipboard ; rm $temp_file ; echo "Last 3 lines copied to clipboard."'
+
+# Copy to clipboard the last 2 lines of output of last command
+alias voll4='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && tail -6 $temp_file | head -4 | xclip -in -selection clipboard ; rm $temp_file ; echo "Last 4 lines copied to clipboard."'
 
 # Allow doing |l for quick piping to less
 alias l="less"
