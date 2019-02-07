@@ -10,6 +10,13 @@
     # - without -R, which would otherwise make vim open buffers in read-only.
     # - with ]c[c to focus automatically on first diff
     cmd = vim -f -d -c 'wincmd l' -c 'cd "$GIT_PREFIX"' -c 'norm ]c[c' "$LOCAL" "$REMOTE"
+[difftool "vimdirdiff"]
+    # This difftool requires git difftool to be run with --dir-diff
+    # Vim will be run only once.
+    # Use vim DirDiff plugin to diff the two temporary directories.
+    # Changes to the temporary files will be reflected in the real directory.
+    # https://stackoverflow.com/questions/8156493/git-vimdiff-and-dirdiff
+    cmd = vim -f '+next' '+execute \"DirDiff\" argv(0) argv(1)' $LOCAL $REMOTE '+syntax off'
 [merge]
 	tool = vimdiff
 [alias]
@@ -19,6 +26,8 @@
 	co = checkout
 	df = diff
 	dft = difftool
+    # Diff with vim DirDiff plugin.
+    difftoolvimdirdiff = "difftool --dir-diff --tool=vimdirdiff"
 [core]
 	excludesfile = ~/.gitignore
 	editor = vim
