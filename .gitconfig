@@ -20,6 +20,10 @@
 [merge]
 	tool = vimdiff
 [alias]
+    # Diff with vim tabs. Open vim only once, one tab per file to diff.
+    # Requires vim fugitive.
+    # https://gist.github.com/dpwright/2873132
+    difftoolvimtabs = "!f() { vim -p $(git diff --name-only) +\"tabdo Gdiff $@\" +tabfirst; }; f"
     # Diff with vim DirDiff plugin.
     difftoolvimdirdiff = "difftool --dir-diff --tool=vimdirdiff"
 [core]
