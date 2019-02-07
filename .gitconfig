@@ -20,12 +20,6 @@
 [merge]
 	tool = vimdiff
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	dft = difftool
     # Diff with vim DirDiff plugin.
     difftoolvimdirdiff = "difftool --dir-diff --tool=vimdirdiff"
 [core]
