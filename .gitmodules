@@ -49,3 +49,6 @@
 [submodule ".vim/bundle/fugitive-gitlab.vim"]
 	path = .vim/bundle/fugitive-gitlab.vim
 	url = https://github.com/shumphrey/fugitive-gitlab.vim.git
+[submodule ".vim/bundle/vim-dirdiff"]
+	path = .vim/bundle/vim-dirdiff
+	url = https://github.com/will133/vim-dirdiff.git
