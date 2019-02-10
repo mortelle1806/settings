@@ -103,6 +103,10 @@ function sbr {
     . ~/.bashrc
 }
 
+# Go back to a parent directory
+# https://github.com/vigneshwaranr/bd
+alias bd=". bd -si"
+
 alias vrc="vim -c 'cd ~/.vim' ~/.vim/vimrc"
 alias vff="vim -c 'FZF'"
 alias vfl="vim -c 'Ag'"
