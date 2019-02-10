@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/linediff.vim"]
 	path = .vim/bundle/linediff.vim
 	url = https://github.com/AndrewRadev/linediff.vim.git
+[submodule ".vim/bundle/greplace"]
+	path = .vim/bundle/greplace
+	url = https://github.com/yegappan/greplace
