@@ -516,6 +516,13 @@ nmap gt :exe "tag " . expand("<cword>")<CR>
 " Open preview window to first location of tag
 nmap gp :exe "ptag " . expand("<cword>")<CR>
 
+function! GenerateTags()
+    execute 'silent !ctags -R .'
+    redraw!
+    echo 'Tags generated.'
+endfunction
+nmap GT :call GenerateTags()<CR>
+
 if has('gui_running')
   set guioptions-=T  " no toolbar
   set lines=30 columns=80 linespace=0
