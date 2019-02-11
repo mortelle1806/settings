@@ -160,6 +160,10 @@ alias voll3='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $te
 # Copy to clipboard the last 2 lines of output of last command
 alias voll4='temp_file=$(mktemp) && tmux capture-pane -J && tmux save-buffer $temp_file && tail -6 $temp_file | head -4 | xclip -in -selection clipboard ; rm $temp_file ; echo "Last 4 lines copied to clipboard."'
 
+# Does not use the tmux scrollback, but lets user copy a previous command (except the one just run by the alias)
+# TODO: Make exiting vim easy (by creating a file?)
+alias voh='history | tail -50 | head -49 | cut -c 8- | vim -c ":norm G" -'
+
 # Allow doing |l for quick piping to less
 alias l="less"
 
