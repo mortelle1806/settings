@@ -131,7 +131,7 @@ alias V="vfd"
 # http://vim.wikia.com/wiki/Open_the_last_edited_file
 # https://vi.stackexchange.com/questions/4817/is-there-a-vim-command-line-option-to-edit-last-edited-file
 # Consider https://github.com/farmergreg/vim-lastplace (ignores git commit messages)
-alias vl='vim -c "normal '\''0"'
+alias vl='vim -c "normal '\''0" -c "normal zz"'
 
 # TODO: Factorize this into functions when stable
 
