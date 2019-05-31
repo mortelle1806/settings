@@ -225,9 +225,15 @@ let g:ack_apply_lmappings = 0
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
 
-" Immediately highlight all occurrences of current word in buffer
-let g:HiCursorWords_style='term=NONE cterm=NONE ctermfg=green'
-let g:HiCursorWords_delay=0
+" A bit less heavy on resources.
+let g:HiCursorWords_delay=50
+
+" Start disabled but allow toggling with a mapping
+" Do not use the commented style because it's not taken into account when using the
+" HiCursorWords_toggle() function. Also the default style is nice, actually.
+"let g:HiCursorWords_style='term=NONE cterm=NONE ctermfg=green'
+let g:HiCursorWords_visible=0
+nnoremap <Leader>H :call HiCursorWords_toggle()<CR>
 
 " Easy shortcut to switch terminal to Terminal-Normal mode
 if v:version >= 800
