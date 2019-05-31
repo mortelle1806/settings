@@ -97,7 +97,7 @@ function fd {
 # Call batch cmd without many characters. Example: c ping 127.0.0.1
 function c {
     args=$@
-    cmd /c $args
+    cmd /c "$args"
 }
 
 function sba {
