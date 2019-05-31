@@ -103,13 +103,29 @@ function sbr {
     . ~/.bashrc
 }
 
+function sp {
+    . ~/.profile
+}
+
+# "Find file": Make user choose a file from the fnid results. To be used with backticks eg. `ff`.
+# The tee command is here for comfort when using `ff` because the selected path will be output to the terminal.
+alias ff="fnid | fzf --height=20 | tee /dev/tty"
+
+# "Find file to clipboard": Make user choose a file from the fnid and copy the path to the clipboard.
+# The newline character at the end is cleared before storage, so that it can be pasted while editing a command, without validating.
+alias ffc="fnid | fzf --height=20 | tee /dev/tty | tr -d '\n' | xclip"
+
 # Go back to a parent directory
 # https://github.com/vigneshwaranr/bd
 alias bd=". bd -si"
 
 alias vrc="vim -c 'cd ~/.vim' ~/.vim/vimrc"
+alias vfd="vim -c 'Fnid'"
 alias vff="vim -c 'FZF'"
 alias vfl="vim -c 'Ag'"
+alias vft="vim -c 'Tags'"
+
+alias V="vfd"
 
 # Open vim at last mark before last exit. This means the last edited file and last position.
 # http://vim.wikia.com/wiki/Open_the_last_edited_file
