@@ -262,7 +262,6 @@ iabbrev 15c <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3 <3... :)
 
 " Format current paragraph but keep cursor where it is
 nnoremap <Leader>p gwap
-inoremap <Leader>p <C-o>gwap
 
 " This is for CTRL+n autocompletion while in insert mode.
 " The above command will change the 'completeopt' option so that Vim's popup menu doesn't select the first completion item, but rather just inserts the longest common text of all matches; and the menu will come up even if there's only one match. (The longest setting is responsible for the former effect and the menuone is responsible for the latter.) 
@@ -284,7 +283,6 @@ inoremap <Up> <C-o>gk
 " Quick save file (only if changed) and restore previous mode if any
 nmap <Leader>s :update<CR>
 vmap <Leader>s <Esc><Leader>sgv
-imap <Leader>s <c-o><Leader>s
 
 " Back tick as replacement for Esc. Tab is good too but as soon as you start
 " programming, you regret it.
