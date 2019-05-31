@@ -179,7 +179,18 @@ set hlsearch
 nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
 
 " Toggle showing whitespace characters
-nnoremap <Leader>ws :set list! list?<CR>
+nnoremap <Leader>ws :call ToggleWhitespace()<CR>
+function ToggleWhitespace()
+    if &diff
+        " Toggle wrap in all windows (works in vimdiff)
+        " Do not show new value in current window because it would make a prompt to
+        " continue after the result is output
+        windo set list!
+    else
+        set list!
+        set list?
+    endif
+endfunction
 
 " Show the whitespace characters
 set listchars=space:·,tab:>-,trail:·,eol:$
