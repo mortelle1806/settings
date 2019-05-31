@@ -172,6 +172,9 @@ elseif &term =~ "rxvt"
     set pastetoggle=<Esc>[12~
 endif
 
+" Activate hlsearch by default
+set hlsearch
+
 " Toggle search results highlighting
 nnoremap <Leader>h :set hlsearch! hlsearch?<CR>
 
