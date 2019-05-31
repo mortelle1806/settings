@@ -89,11 +89,6 @@ alias v='vim'
 # Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 alias ag='ag --color-match "39;91"'
 
-# Alternative to the real fd to see if I can live without it
-function fd {
-    find -iname *$1*
-}
-
 # Call batch cmd without many characters. Example: c ping 127.0.0.1
 function c {
     args=$@
