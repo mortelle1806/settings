@@ -216,6 +216,11 @@ endif
 " Highlight searched term in file buffers and quickfix buffer
 let g:ackhighlight = 1
 
+" Don't apply Ack.vim mappings to the quickfix window because not using them.
+" Also, the defaults prevent using 'v' for visual mode.
+let g:ack_apply_qmappings = 0
+let g:ack_apply_lmappings = 0
+
 " https://stackoverflow.com/questions/657447/vim-clear-last-search-highlighting
 " Double escape clears search pattern
 nnoremap <silent> <Esc><Esc> :let @/=""<CR>
