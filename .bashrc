@@ -139,3 +139,9 @@ export FZF_DEFAULT_COMMAND='ag --follow --hidden --ignore .git --ignore tags -g 
 # Autocomplete will cycle through possibilities without requiring additional characters even if there is ambiguity
 bind "TAB:menu-complete"
 bind '"\e[Z": menu-complete-backward'
+
+# Browsing history with up and down arrows will consider only history commands
+# that begin with the characters before the cursor, instead of the default
+# which is to consider all history commands.
+bind '"\e[A": history-search-backward'
+bind '"\e[B": history-search-forward'
