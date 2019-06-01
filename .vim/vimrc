@@ -575,12 +575,19 @@ nmap gt :exe "tag " . expand("<cword>")<CR>
 " Open preview window to first location of tag
 nmap gp :exe "ptag " . expand("<cword>")<CR>
 
+" Generate tags file with ctags
 function! GenerateTags()
-    execute 'silent !ctags -R .'
+    execute 'silent !ctags -V -R .'
     redraw!
-    echo 'Tags generated.'
+    echo 'Tags file generated.'
 endfunction
-nmap GT :call GenerateTags()<CR>
+
+" Generate ID file with mkid
+function! GenerateID()
+    execute 'silent !mkid --lang-map="$HOME/id-lang.map" --verbose'
+    redraw!
+    echo 'ID file generated.'
+endfunction
 
 "=========================================================
 " Functions and commands that depend on vim-printf plugin
