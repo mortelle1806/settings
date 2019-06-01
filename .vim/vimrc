@@ -602,6 +602,14 @@ function! s:Browse(args)
 endfunction
 command! -nargs=* Browse call <SID>Browse(<q-args>)
 
+" Show current function name in C (works also for C++ at least for common
+" cases)
+" Original code: https://vim.fandom.com/wiki/Show_current_function_name_in_C_programs
+" See improvement in https://stackoverflow.com/questions/13634826/show-function-name-in-status-line
+fun! ShowFuncName()
+  echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bWn'))
+endfun
+
 " Keep at end of file
 let profile_vimrc = $HOME . "/.profile_vimrc"
 if filereadable(profile_vimrc)
