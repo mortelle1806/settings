@@ -383,15 +383,22 @@ set clipboard-=autoselect
 " Follow vim-signify plugin recommendation by narrowing down list of vcs
 let g:signify_vcs_list = [ 'git', 'perforce' ]
 
-" Open a diff tab or close it with the same shortcut
+" Normal mode shortcut: Open a diff tab or close it with the same shortcut
 nnoremap <Leader>d :call OpenOrCloseDiff()<CR>
 function! OpenOrCloseDiff() " Add '!' to allow hot-reload of vimrc
     if &diff
         " This closes the diff tab that gets opened by :SignifyDiff
         tabc
     else
+        " Get line and column in file that needs to be diffed
+        let line = line(".")
+        let column = col(".")
         " This opens a new tab with a diff inside, if there are changes
         SignifyDiff
+        " Go to same line and same column in diff
+        " (THIS SHOULD PROBABLY BE SENT UPSTREAM)
+        call search("\\%" . line . "l" . "\\%" . column . "c")
+        norm zz
     endif
 endfunction
 
