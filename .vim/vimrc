@@ -331,6 +331,19 @@ if &diff
     endfunction
 endif
 
+" Toggle diff highlighting
+" Trick learned on http://vim.1045645.n5.nabble.com/turn-off-diff-coloring-on-diff-view-td1180616.html
+"if &diff
+    map <Leader>D :call ToggleDiffHighlighting()<CR>
+    function! ToggleDiffHighlighting()
+        if &hl =~ 'A:none,C:none,D:none,T:none'
+            set hl&
+        else
+            set hl+=A:none,C:none,D:none,T:none 
+        endif
+    endfunction
+"endif
+
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt\\|tmux\\|screen"
     " use a cursor of a certain color in insert mode
