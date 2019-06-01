@@ -610,6 +610,13 @@ fun! ShowFuncName()
   echo getline(search("^[^ \t#/]\\{2}.*[^:]\s*$", 'bWn'))
 endfun
 
+" Copy to clipboard the result of a call to expand().
+" Example :CC %:h will copy the directory path of the current file
+function! s:CopyToClipboardExpandedValue(args)
+    let @+ = expand(a:args)
+endfunction
+command! -nargs=* CC call <SID>CopyToClipboardExpandedValue(<q-args>)
+
 " Keep at end of file
 let profile_vimrc = $HOME . "/.profile_vimrc"
 if filereadable(profile_vimrc)
