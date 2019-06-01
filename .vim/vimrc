@@ -313,6 +313,11 @@ if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
 
+" Automatically run :diffupdate when writing a file. Some non-writing actions
+" do update the diff, but some do not.
+" https://vim.fandom.com/wiki/Update_the_diff_view_automatically
+autocmd BufWritePost * if &diff == 1 | diffupdate | endif
+
 " Toggle for ignoring whitespace in diff mode
 " http://vim.wikia.com/wiki/Ignore_white_space_in_vimdiff
 if &diff
