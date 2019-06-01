@@ -307,6 +307,8 @@ nnoremap <C-j> ciw<C-r>0<ESC>
 " Enhances diff a lot in some cases.
 " Try vimdiff in .vim/bundle/vim-enhanced-diff/test/4
 " Result screenshot in https://github.com/chrisbra/vim-diff-enhanced
+" TODO: Check if this bit can be disabled thanks to this patch: https://www.reddit.com/r/vim/comments/9eqixj/as_of_810360_vim_comes_with_an_improved_diff/
+" Also check the "Update" section in https://github.com/chrisbra/vim-diff-enhanced/
 if &diff
     let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 endif
