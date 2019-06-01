@@ -504,6 +504,30 @@ if v:version >= 800
     tmap ]t <C-W>:tnext<CR>
 endif
 
+" Sort quick fix window / location list window by file path
+" Inspired from: https://stackoverflow.com/questions/15393301/automatically-sort-quickfix-entries-by-line-text-in-vim
+" The sort function did not work as intended. Used the one from https://github.com/AndrewRadev/qftools.vim
+command! -bang -nargs=* QfSort call SortQuickfix('QfSortCompare')
+function! SortQuickfix(fn)
+    call setqflist(sort(getqflist(), a:fn))
+endfunction
+command! -bang -nargs=* LocSort call SortLocationList('QfSortCompare')
+function! SortLocationList(fn)
+    call setloclist(0, sort(getloclist('.'), a:fn))
+endfunction
+function! QfSortCompare(x, y)
+  let x_name = bufname(a:x.bufnr)
+  let y_name = bufname(a:y.bufnr)
+
+  if x_name < y_name
+    return -1
+  elseif x_name > y_name
+    return 1
+  else
+    return 0
+  else
+endfunction
+
 " Go to previous error in quickfix window
 " Go to next error in quickfix window
 " NOTE: This overrides the ( and ) built-in shortcuts, which are
