@@ -617,6 +617,27 @@ function! s:CopyToClipboardExpandedValue(args)
 endfunction
 command! -nargs=* CC call <SID>CopyToClipboardExpandedValue(<q-args>)
 
+function! P4AnnotateInSplit()
+    let relative_file_path = expand('%')
+    let line = line(".")
+    vnew
+
+    " consider as scratch
+    setlocal buftype=nofile 
+    setlocal bufhidden=wipe
+    setlocal noswapfile
+    setlocal nobuflisted
+
+    " Note: -i seems to be giving better results than -I, but not sure it's always the case...
+    let p4command = 'p4 annotate -c -dbwl -i -u -q ' . relative_file_path . ' | sed ''s/^[0-9]\+:\s[a-zA-Z\.0-9\-]\+\s[0-9]\+\/[0-9]\+\/[0-9]\+\s/\0~~~~~/g''' . " | column -t -s '~~~~~'"
+    silent! execute 'file ' . p4command
+    silent! execute 'read !' . p4command
+    call cursor(line, 1)
+
+    norm zz
+endfunction
+nmap <leader>a :call P4AnnotateInSplit()<cr>
+
 " Keep at end of file
 let profile_vimrc = $HOME . "/.profile_vimrc"
 if filereadable(profile_vimrc)
