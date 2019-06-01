@@ -61,3 +61,6 @@
 [submodule ".vim/bundle/greplace"]
 	path = .vim/bundle/greplace
 	url = https://github.com/yegappan/greplace
+[submodule ".vim/bundle/vim-printf"]
+	path = .vim/bundle/vim-printf
+	url = https://github.com/mptre/vim-printf.git

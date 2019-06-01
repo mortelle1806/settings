@@ -582,6 +582,67 @@ function! GenerateTags()
 endfunction
 nmap GT :call GenerateTags()<CR>
 
+"=========================================================
+" Functions and commands that depend on vim-printf plugin
+
+function! ConvertToPrintfD(printFunctionBegin, printFunctionEnd)
+     let b:printf_pattern = a:printFunctionBegin . '__FUNCTION__ ": %d\n", %s' . a:printFunctionEnd . ';'
+     Printf
+endfunction
+
+function! ConvertToPrintfS(printFunctionBegin, printFunctionEnd)
+     let b:printf_pattern = a:printFunctionBegin . '__FUNCTION__ ": %s\n", %s' . a:printFunctionEnd . ';'
+     Printf
+endfunction
+
+function! ConvertToPrintfF(printFunctionBegin, printFunctionEnd)
+     let b:printf_pattern = a:printFunctionBegin . '__FUNCTION__ ": %.2f\n", %s' . a:printFunctionEnd . ';'
+     Printf
+endfunction
+
+function! ConvertToPrintfX(printFunctionBegin, printFunctionEnd)
+     let b:printf_pattern = a:printFunctionBegin . '__FUNCTION__ ": %08x\n", %s' . a:printFunctionEnd . ';'
+     Printf
+endfunction
+
+function! ConvertToPrintfP(printFunctionBegin, printFunctionEnd)
+     let b:printf_pattern = a:printFunctionBegin . '__FUNCTION__ ": %p\n", %s' . a:printFunctionEnd . ';'
+     Printf
+endfunction
+
+" Call printf
+command! Ppd :call ConvertToPrintfD('printf(', ')')
+command! Pps :call ConvertToPrintfS('printf(', ')')
+command! Ppf :call ConvertToPrintfF('printf(', ')')
+command! Ppx :call ConvertToPrintfX('printf(', ')')
+command! Ppp :call ConvertToPrintfP('printf(', ')')
+
+" Call OutputDebugString
+command! Pod :call ConvertToPrintfD('OutputDebugString(', ')')
+command! Pos :call ConvertToPrintfS('OutputDebugString(', ')')
+command! Pof :call ConvertToPrintfF('OutputDebugString(', ')')
+command! Pox :call ConvertToPrintfX('OutputDebugString(', ')')
+command! Pop :call ConvertToPrintfP('OutputDebugString(', ')')
+
+" Call with custom function. Allows calling multiple functions.
+"
+" Example #1:
+" Input:
+" :Pcd Log( )
+" Result:
+" Log(__FUNCTION__ ": myVar=%d\n", myVar); "
+" Example #2
+" Input:
+" :Pcd Log(LogCategoryAnim,\ StringFormat( )) " Result:
+" Log(LogCategoryAnim, StringFormat(__FUNCTION__ ": myVar=%d\n", myVar)); "
+command! -nargs=+ Pcd :call ConvertToPrintfD(<f-args>)
+command! -nargs=+ Pcs :call ConvertToPrintfS(<f-args>)
+command! -nargs=+ Pcf :call ConvertToPrintfF(<f-args>)
+command! -nargs=+ Pcx :call ConvertToPrintfX(<f-args>)
+command! -nargs=+ Pcp :call ConvertToPrintfP(<f-args>)
+
+"============================================================
+
 if has('gui_running')
   set guioptions-=T  " no toolbar
   set lines=30 columns=80 linespace=0
