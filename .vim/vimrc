@@ -638,6 +638,32 @@ function! P4AnnotateInSplit()
 endfunction
 nmap <leader>a :call P4AnnotateInSplit()<cr>
 
+function! P4DescribeInSplit()
+    let current_word = expand('<cword>') " Has to be a CL number to work
+    new
+    
+    " consider as scratch
+    setlocal buftype=nofile 
+    setlocal bufhidden=delete
+    setlocal noswapfile
+    setlocal nobuflisted
+
+    set syntax=diff
+
+    let p4command = 'p4 describe -a -S -du3 ' . current_word
+    echo 'Running: ' . p4command
+    silent! execute 'file ' . p4command
+    silent! execute 'read !' . p4command
+    norm gg
+
+    " first line is empty when you :new + :read
+    norm dd
+endfunction
+nmap <leader>c :call P4DescribeInSplit()<cr>
+
+" Vim plugin AnsiEsc contains cecutil.vim file which registers unwanted mappings if this global is not set.
+let g:no_plugin_maps=1
+
 " Keep at end of file
 let profile_vimrc = $HOME . "/.profile_vimrc"
 if filereadable(profile_vimrc)
