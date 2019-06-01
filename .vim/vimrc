@@ -457,6 +457,9 @@ let g:filebeagle_show_hidden = 1
 " Easy close current tab
 nnoremap <Leader>t :tabc<cr>
 
+" Easy cycling between windows
+nnoremap , :wincmd w<cr>
+
 " Previous/next window
 nmap [w :wincmd W<CR>
 nmap ]w :wincmd w<CR>
