@@ -454,6 +454,9 @@ endif
 
 let g:filebeagle_show_hidden = 1
 
+" Easy close current tab
+nnoremap <Leader>t :tabc<cr>
+
 " Previous/next window
 nmap [w :wincmd W<CR>
 nmap ]w :wincmd w<CR>
