@@ -417,37 +417,19 @@ let g:perforce_prompt_on_open = 0
 set diffopt+=context:99999
 
 " Open FZF. The selected file will get opened in the current window.
-nnoremap <Leader>F :FZF<CR>
-if v:version >= 800
-    tnoremap <Leader>F <C-W>:FZF<CR>
-endif
+nnoremap <Space>f :FZF<CR>
 
-nnoremap <Leader>ff :FZF<CR>
-if v:version >= 800
-    tnoremap <Leader>ff <C-W>:FZF<CR>
-endif
+" Files listed by fnid (id-utils)
+command! -bang -nargs=* Fnid call fzf#run(fzf#wrap({'source': 'fnid'}))
+nnoremap <Space>d :Fnid<CR>
 
-nnoremap <Leader>ft :Tags<CR>
-if v:version >= 800
-    tnoremap <Leader>ft <C-W>:Tags<CR>
-endif
+nnoremap <Space>h :History<CR>
 
-nnoremap <Leader>fl :Ag<CR>
-if v:version >= 800
-    tnoremap <Leader>fl <C-W>:Ag<CR>
-endif
-
-nnoremap <Leader>fL :BLines<CR>
-if v:version >= 800
-    tnoremap <Leader>fL <C-W>:BLines<CR>
-endif
-
-nnoremap <Leader>fb :Buffers<CR>
-if v:version >= 800
-    tnoremap <Leader>fb <C-W>:Buffers<CR>
-endif
-
-nnoremap , :Buffers<CR>
+" FZF commands
+nnoremap <Space>t :Tags<CR>
+nnoremap <Space>l :Ag<CR>
+nnoremap <Space>L :BLines<CR>
+nnoremap <Space>b :Buffers<CR>
 
 " Override fzf.vim's version because it does not include the options below
 " Option --color-match is here to avoid the whole line to be highlighted as a
