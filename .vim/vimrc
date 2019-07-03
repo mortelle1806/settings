@@ -681,7 +681,7 @@ function! s:CopyToClipboardExpandedValue(args)
 endfunction
 command! -nargs=* CC call <SID>CopyToClipboardExpandedValue(<q-args>)
 
-function! P4AnnotateInSplit()
+function! P4AnnotateInSplit(args)
     let relative_file_path = expand('%')
     let line = line(".")
     vnew
@@ -692,15 +692,19 @@ function! P4AnnotateInSplit()
     setlocal noswapfile
     setlocal nobuflisted
 
+    set nonumber
+
     " Note: -i seems to be giving better results than -I, but not sure it's always the case...
-    let p4command = 'p4 annotate -c -dbwl -i -u -q ' . relative_file_path . ' | sed ''s/^[0-9]\+:\s[a-zA-Z\.0-9\-]\+\s[0-9]\+\/[0-9]\+\/[0-9]\+\s/\0~~~~~/g''' . " | column -t -s '~~~~~'"
+    " Note 2: Files can contain non UTF-8 characters, hence the iconv command.
+    let p4command = 'p4 annotate ' . expand(a:args) . ' ' . relative_file_path . ' | iconv -t utf-8 -c | sed ''s/^[0-9]\+:\s[a-zA-Z\.0-9\-]\+\s[0-9]\+\/[0-9]\+\/[0-9]\+\s/\0~~~~~/g''' . " | column -t -s '~~~~~'"
     silent! execute 'file ' . p4command
     silent! execute 'read !' . p4command
     call cursor(line, 1)
 
     norm zz
 endfunction
-nmap <leader>a :call P4AnnotateInSplit()<cr>
+nmap <leader>a :call P4AnnotateInSplit('-c -dbwl -u -q -I')<cr>
+nmap <leader>A :call P4AnnotateInSplit('-c -dbwl -u -q -I')<left><left>
 
 function! P4DescribeInSplit()
     let current_word = expand('<cword>') " Has to be a CL number to work
