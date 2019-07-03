@@ -195,23 +195,18 @@ endfunction
 " Show the whitespace characters
 set listchars=space:·,tab:>-,trail:·,eol:$
 
-" " Run search on word under cursor with Ack.vim
-" Note: <C-R><C-W> inserts word under cursor when already in command mode)
-" Note: Could have used g:ack_use_cword_for_empty_search to avoid the
-" <C-R><C-W>
-nnoremap <Leader>a :Ack<Space><C-R><C-W><CR>
+nnoremap <Space>a :lgetexpr system('ag --hidden --ignore .git --ignore tags --vimgrep <C-R><C-W>')<CR>
+nnoremap <Space>A :lgetexpr system('ag --hidden --ignore .git --ignore tags --vimgrep ')<Left><Left>
 
-" Prepare search in command mode with Ack.vim.
-" User must then type what to look for and validate.
-nnoremap <Leader>A :Ack<Space>
-if v:version >= 800
-    tnoremap <Leader>A <C-W><C-W>:Ack<Space>
-endif
+nnoremap <Space>i :lgetexpr system('lid -Rgrep <C-R><C-W>')<CR>
+nnoremap <Space>I :lgetexpr system('lid -Rgrep ')<Left><Left>
 
-" Make Ack.vim use Ag if possible (much faster)
-if executable('ag')
-  let g:ackprg = 'ag --hidden --ignore .git --ignore tags --vimgrep'
-endif
+nnoremap <Space>g :lgetexpr system('global --result grep <C-R><C-W>')<CR>
+nnoremap <Space>G :lgetexpr system('global --result grep ')<Left><Left>
+
+" Setting g:ackprg is mandatory for :Ack command to be defined by the Ack.vim
+" plugin. Do not remove.
+let g:ackprg = 'undefined'
 
 " Highlight searched term in file buffers and quickfix buffer
 let g:ackhighlight = 1
