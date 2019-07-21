@@ -230,6 +230,10 @@ let g:HiCursorWords_delay=50
 let g:HiCursorWords_visible=0
 nnoremap <Leader>H :call HiCursorWords_toggle()<CR>
 
+" Disable mappings in vim-foldsearch because they conflict with mappings from
+" this vimrc.
+let g:foldsearch_disable_mappings=1
+
 " Easy shortcut to switch terminal to Terminal-Normal mode
 if v:version >= 800
     tnoremap `` <C-W>N
@@ -397,6 +401,14 @@ function! OpenOrCloseDiff() " Add '!' to allow hot-reload of vimrc
         norm zz
     endif
 endfunction
+
+" Visual mode shortcut: line diff of two visual blocks, in 2 steps
+vnoremap <Leader>d :'<,'>Linediff<CR>
+
+" Make Linediff open in an horizontal split below, not in a tab (adapted from
+" documentation).
+let g:linediff_first_buffer_command  = 'rightbelow new'
+let g:linediff_further_buffer_command = 'rightbelow vertical new'
 
 " Vim-perforce: Try to open the file in perforce when modifying a read-only file
 let g:perforce_open_on_change = 1
