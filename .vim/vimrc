@@ -741,9 +741,6 @@ endfunction
 nmap <leader>c :call P4DescribeInSplit('-a -S -du3 <C-R><C-W>')<cr>
 nmap <leader>C :call P4DescribeInSplit('-a -S -du3 ')<left><left>
 
-" Vim plugin AnsiEsc contains cecutil.vim file which registers unwanted mappings if this global is not set.
-let g:no_plugin_maps=1
-
 let g:peekaboo_window='rightbelow new'
 let g:peekaboo_compact=1
 
