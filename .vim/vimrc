@@ -309,9 +309,7 @@ nnoremap <C-j> "_ciw<C-r>0<ESC>
 " Result screenshot in https://github.com/chrisbra/vim-diff-enhanced
 " TODO: Check if this bit can be disabled thanks to this patch: https://www.reddit.com/r/vim/comments/9eqixj/as_of_810360_vim_comes_with_an_improved_diff/
 " Also check the "Update" section in https://github.com/chrisbra/vim-diff-enhanced/
-if &diff
-    let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
-endif
+let &diffexpr='EnhancedDiff#Diff("git diff", "--diff-algorithm=patience")'
 
 " Automatically run :diffupdate when writing a file. Some non-writing actions
 " do update the diff, but some do not.
@@ -320,29 +318,25 @@ autocmd BufWritePost * if &diff == 1 | diffupdate | endif
 
 " Toggle for ignoring whitespace in diff mode
 " http://vim.wikia.com/wiki/Ignore_white_space_in_vimdiff
-if &diff
-    map <Leader>wi :call IwhiteToggle()<CR>
-    function! IwhiteToggle()
-        if &diffopt =~ 'iwhite'
-            set diffopt-=iwhite
-        else
-            set diffopt+=iwhite
-        endif
-    endfunction
-endif
+map <Leader>wi :call IwhiteToggle()<CR>
+function! IwhiteToggle()
+    if &diffopt =~ 'iwhite'
+        set diffopt-=iwhite
+    else
+        set diffopt+=iwhite
+    endif
+endfunction
 
 " Toggle diff highlighting
 " Trick learned on http://vim.1045645.n5.nabble.com/turn-off-diff-coloring-on-diff-view-td1180616.html
-"if &diff
-    map <Leader>D :call ToggleDiffHighlighting()<CR>
-    function! ToggleDiffHighlighting()
-        if &hl =~ 'A:none,C:none,D:none,T:none'
-            set hl&
-        else
-            set hl+=A:none,C:none,D:none,T:none 
-        endif
-    endfunction
-"endif
+map <Leader>D :call ToggleDiffHighlighting()<CR>
+function! ToggleDiffHighlighting()
+    if &hl =~ 'A:none,C:none,D:none,T:none'
+        set hl&
+    else
+        set hl+=A:none,C:none,D:none,T:none
+    endif
+endfunction
 
 " Set up cursor behaviour:
 if &term =~ "xterm\\|rxvt\\|tmux\\|screen"
