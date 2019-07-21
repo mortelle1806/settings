@@ -64,3 +64,6 @@
 [submodule ".vim/bundle/vim-printf"]
 	path = .vim/bundle/vim-printf
 	url = https://github.com/mptre/vim-printf.git
+[submodule ".vim/bundle/vim-foldsearch"]
+	path = .vim/bundle/vim-foldsearch
+	url = https://github.com/embear/vim-foldsearch.git
