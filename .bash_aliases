@@ -148,7 +148,7 @@ function save_tmux_scrollback() {
 
 # Open vim with a capture of the latest tmux scrollback
 # Using the g_ instead of $ mapping is subtle : it allows using the k key while still staying on the same column as the last non-blank character. With $ it will go to the end of the line above.
-alias vo='save_tmux_scrollback && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G" -c ":norm g_" $temp_file ; rm $temp_file'
+alias vo='save_tmux_scrollback && vim -u ~/.vim/vimrc_scrollback -R -c ":norm Gk" -c ":norm g0" $temp_file ; rm $temp_file'
 
 # Open vim with a capture of the latest tmux scrollback, look for a integer
 alias voi='save_tmux_scrollback && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G" -c ":norm g_" -c "silent! /\d\+" -c ":norm N" $temp_file ; rm $temp_file'
