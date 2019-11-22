@@ -73,3 +73,6 @@
 [submodule ".vim/bundle/vim-peekaboo"]
 	path = .vim/bundle/vim-peekaboo
 	url = https://github.com/junegunn/vim-peekaboo.git
+[submodule ".vim/bundle/diffchar.vim"]
+	path = .vim/bundle/diffchar.vim
+	url = https://github.com/rickhowe/diffchar.vim.git
