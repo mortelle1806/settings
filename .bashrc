@@ -56,14 +56,39 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
-# Note about \j: It contains the number of background jobs
-# https://stackoverflow.com/questions/12646917/show-job-count-in-bash-prompt-only-if-nonzero
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$([ \j -gt 0 ] && echo [\j])\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w$([ \j -gt 0 ] && echo [\j])\$ '
-fi
 unset color_prompt force_color_prompt
+
+PROMPT_COMMAND=__prompt_command # Func to gen PS1 after CMDs
+
+__prompt_command() {
+    local EXIT="$?"             # This needs to be first
+    PS1=""
+
+    local RCol='\[\e[0m\]'
+
+    local Red='\[\e[0;31m\]'
+    local Gre='\[\e[0;32m\]'
+    local BYel='\[\e[1;33m\]'
+    local BBlu='\[\e[1;34m\]'
+    local Pur='\[\e[0;35m\]'
+
+    PS1+='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]$'
+
+    # Note about \j: It contains the number of background jobs
+    # https://stackoverflow.com/questions/12646917/show-job-count-in-bash-prompt-only-if-nonzero
+    PS1+='([ \j -gt 0 ] && echo :[\j])'
+
+    PS1+=':'
+
+    if [ $EXIT != 0 ]; then
+        PS1+="\[\e[0;91m\]$EXIT\[\033[00m\]"      # Add red if exit code non 0
+    else
+        PS1+="\[\033[01;32m\]$EXIT\[\033[00m\]"
+    fi
+
+    PS1+='\$'
+    PS1+=' '
+}
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
