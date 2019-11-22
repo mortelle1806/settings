@@ -192,3 +192,50 @@ alias l="less"
 # to something that Alpine actually works with.
 alias alpine='TERM=xterm-256color alpine'
 
+function generate_ids() {
+    rm ID_new
+    time mkid --lang-map="$HOME/id-lang.map" --verbose --output=ID_new
+    RET=$?
+    if [ $RET -ne 0 ]; then
+        echo "Error!!!!"
+        popd
+        return 1
+    fi 
+    rm ID
+    mv ID_new ID
+    echo Success.
+}
+export -f generate_ids
+alias genid=generate_ids
+
+function generate_csearch() {
+    rm .csearchindex_new
+    local CSEARCHINDEX=./.csearchindex_new
+    time cindex -maxlinelen 5000 .
+    RET=$?
+    if [ $RET -ne 0 ]; then
+        echo "Error!!!!"
+        popd
+        return 1
+    fi 
+    rm .csearchindex
+    mv .csearchindex{_new,}
+    echo Success.
+}
+export -f generate_csearch
+alias gencs=generate_csearch
+
+alias genx='genid && gencs'
+
+function generate_tags() {
+    gtags --incremental --verbose
+    RET=$?
+    if [ $RET -ne 0 ]; then
+        echo "Error!!!!"
+        popd
+        return 1
+    fi
+    echo Success.
+}
+export -f generate_tags
+alias gentags=generate_tags
