@@ -136,8 +136,9 @@ alias vl='vim -c "normal '\''0" -c "normal zz"'
 # TODO: Factorize this into functions when stable
 
 function save_tmux_scrollback() {
+    local start_line_index=${1:-0} # Sets to default value to 0 (ie. first line of visible pane) unless argument $1 exists.
     temp_file=$(mktemp)
-    tmux capture-pane -J
+    tmux capture-pane -J -S $start_line_index
     tmux save-buffer $temp_file
 
     # For some reason, the resulting file has trailing newlines and trailing whitespaces in lines.
@@ -146,9 +147,17 @@ function save_tmux_scrollback() {
     sed -i "s/[ \t]*$//" $temp_file
 }
 
-# Open vim with a capture of the latest tmux scrollback
+# Open vim with a capture of the latest tmux scrollback (no argument = only the visible scrollback, which is fast)
 # Using the g_ instead of $ mapping is subtle : it allows using the k key while still staying on the same column as the last non-blank character. With $ it will go to the end of the line above.
-alias vo='save_tmux_scrollback && vim -u ~/.vim/vimrc_scrollback -R -c ":norm Gk" -c ":norm g0" $temp_file ; rm $temp_file'
+function vo() {
+    local start_line_index=${1:-0} # Sets to default value to 0 (ie. first line of visible pane) unless argument $1 exists.
+    save_tmux_scrollback $start_line_index
+    vim -u ~/.vim/vimrc_scrollback -R -c ":norm Gk" -c ":norm g0" $temp_file
+    rm $temp_file
+}
+
+# Open vim with a capture of the latest tmux scrollback, but up to X lines above the visible scrollback (check .tmux.conf for history-limit to compare)
+alias vO='vo -999999'
 
 # Open vim with a capture of the latest tmux scrollback, look for a integer
 alias voi='save_tmux_scrollback && vim -u ~/.vim/vimrc_scrollback -R -c ":norm G" -c ":norm g_" -c "silent! /\d\+" -c ":norm N" $temp_file ; rm $temp_file'
