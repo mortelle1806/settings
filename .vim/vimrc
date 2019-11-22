@@ -533,6 +533,9 @@ function! QfSortCompare(x, y)
   else
 endfunction
 
+" vim-qf: Define the maximum height of location/quickfix windows.
+let g:qf_max_height = 15
+
 " Go to previous error in quickfix window
 " Go to next error in quickfix window
 " NOTE: This overrides the ( and ) built-in shortcuts, which are
