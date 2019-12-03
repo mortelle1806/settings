@@ -193,8 +193,12 @@ alias l="less"
 alias alpine='TERM=xterm-256color alpine'
 
 function generate_ids() {
-    rm ID_new
-    time mkid --lang-map="$HOME/id-lang.map" --verbose --output=ID_new
+    echo Generating ID file...
+    local temp_id_file="ID_new"
+    if [ -f "$temp_id_file" ]; then
+        rm $temp_id_file
+    fi
+    mkid --lang-map="$HOME/id-lang.map" --output=$temp_id_file
     RET=$?
     if [ $RET -ne 0 ]; then
         echo "Error!!!!"
@@ -202,16 +206,19 @@ function generate_ids() {
         return 1
     fi 
     rm ID
-    mv ID_new ID
-    echo Success.
+    mv $temp_id_file ID
 }
 export -f generate_ids
 alias genid=generate_ids
 
 function generate_csearch() {
-    rm .csearchindex_new
-    local CSEARCHINDEX=./.csearchindex_new
-    time cindex -maxlinelen 5000 .
+    echo Generating .csearchindex file...
+    local temp_index_file=".csearchindex_new"
+    if [ -f "$temp_index_file" ]; then
+        rm $temp_index_file
+    fi
+    local CSEARCHINDEX=./$temp_index_file
+    cindex -maxlinelen 5000 . &> /dev/null
     RET=$?
     if [ $RET -ne 0 ]; then
         echo "Error!!!!"
@@ -219,8 +226,7 @@ function generate_csearch() {
         return 1
     fi 
     rm .csearchindex
-    mv .csearchindex{_new,}
-    echo Success.
+    mv $temp_index_file .csearchindex
 }
 export -f generate_csearch
 alias gencs=generate_csearch
