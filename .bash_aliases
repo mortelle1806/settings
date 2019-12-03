@@ -241,7 +241,13 @@ function generate_tags() {
         popd
         return 1
     fi
-    echo Success.
 }
 export -f generate_tags
 alias gentags=generate_tags
+
+function vimdirdiff() {
+    local path1=$1
+    local path2=$2
+    vim -c ":DirDiff $path1 $path2"
+}
+alias vdd='vimdirdiff'
