@@ -76,3 +76,6 @@
 [submodule ".vim/bundle/diffchar.vim"]
 	path = .vim/bundle/diffchar.vim
 	url = https://github.com/rickhowe/diffchar.vim.git
+[submodule ".vim/bundle/t4-vim"]
+	path = .vim/bundle/t4-vim
+	url = https://github.com/sillyotter/t4-vim.git
