@@ -29,7 +29,7 @@ function sp {
     . ~/.profile
 }
 
-source .git_aliases
+source ~/.git_aliases
 
 # "Find file": Make user choose a file from the fnid results. To be used with backticks eg. `ff`.
 # The tee command is here for comfort when using `ff` because the selected path will be output to the terminal.
