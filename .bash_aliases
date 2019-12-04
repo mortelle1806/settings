@@ -210,3 +210,12 @@ function hl_generic_log {
         -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.cmd' \
         -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.ps1'
 }
+
+# ondir aliases (requires ~/.ondirrc.m4 file)
+# The reason why we dont do && before the 'cd -' is because the 'cd /' might
+# fail if the ~/.ondirrc script generated an error (for example due to an
+# unalias command that did not work). In that case we still want to go back
+# to the previous directory.
+alias ode_no_reload='vim -c "set syntax=off" ~/.ondirrc.m4 && m4 ~/.ondirrc.m4 > ~/.ondirrc'
+alias ode='ode_no_reload && cd / ; cd -'
+alias odr='cd / ; cd -'
