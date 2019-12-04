@@ -178,4 +178,11 @@ function generate_tags() {
 export -f generate_tags
 alias gentags=generate_tags
 
+# Set the current exit code as the exit code of the specified pipe (0 = the first command of the last pipe command)
+# If no argument is specified, the status of the pipe 0 is used.
+function report_pipe_status() {
+    local ret=${PIPESTATUS[${1:0}]}
+    (exit $ret)
+}
+
 }
