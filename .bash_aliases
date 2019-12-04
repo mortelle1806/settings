@@ -6,6 +6,13 @@ alias lla='ls -la'
 
 alias v='vim'
 
+function vimdirdiff() {
+    local path1=$1
+    local path2=$2
+    vim -c ":DirDiff $path1 $path2"
+}
+alias vdd='vimdirdiff'
+
 # Less confusing colors by default
 # Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 alias ag='ag --color-match "39;91"'
@@ -168,9 +175,4 @@ function generate_tags() {
 export -f generate_tags
 alias gentags=generate_tags
 
-function vimdirdiff() {
-    local path1=$1
-    local path2=$2
-    vim -c ":DirDiff $path1 $path2"
 }
-alias vdd='vimdirdiff'
