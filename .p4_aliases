@@ -1,0 +1,338 @@
+# A bunch of p4 helper functions and aliases
+
+# https://www.perforce.com/blog/p4-command-line-tool-colors
+export P4COLORS='@info=0:@error=31;1:@warning=33;1:action=36:how:36:change=33:depotFile=32:path=32:location=32:rev=31:depotRev=31'
+
+# TODO: Make a better layout than 4 vertical splits
+export P4MERGE=vimdiff
+
+# https://www.perforce.com/blog/want-color-output-p4-diff
+export P4DIFF=colordiff
+
+alias p4a='p4 add'
+
+alias p4an='p4 annotate -c -dbwl -I -u -q'
+
+# Note: -i seems to be giving better results than -I, but not sure it's always the case...
+function p4an2 {
+    FILE=$1
+    LINE=$2
+    echo Running p4 annotate...
+    p4 annotate -c -dbwl -i -u -q $FILE \
+        | iconv -t utf-8 -c \
+        | sed 's/^[0-9]\+:\s[a-zA-Z\.0-9\-]\+\s[0-9]\+\/[0-9]\+\/[0-9]\+\s/\0~~~~~/g' \
+        | column -t -s '~~~~~' \
+        | vim -R -c "call cursor($LINE,1)" -
+}
+
+function p4c {
+    # noexpandtab because Perforce likes to have tabs for description
+    P4EDITOR="vim -c 'call cursor(27,2)' -c 'set noexpandtab' -c 'set wrap' -c 'set syntax=perforce'" sh -c 'p4 change'
+}
+
+alias p4cd='p4 change -d'
+
+function p4co {
+    p4 change -o $1 | tr -d '\r' | vim -R -c 'call cursor(29,2)' -c 'set syntax=perforce' -
+}
+
+alias p4cs='p4 changes -t'
+
+function p4cu {
+    P4EDITOR="vim -c 'call cursor(29,2)' -c 'set noexpandtab' -c 'set wrap' -c 'set syntax=perforce'" sh -c "p4 change -u $1"
+}
+
+function hl_p4diff {
+    hl -ei \
+        -1w "$current_p4branch" \
+        -3w '^\-\-\-\s(.*)$' \
+        -3w '^\+\+\+\s(.*)$' \
+        -2r '^\-([^\-][^\-][^\s].*)$' \
+        -2g '^\+([^\+][^\+][^\s].*)$' \
+        -2c '^@@\s.*$'
+}
+
+# p4 diff for all opened files (no arguments), or for specific file specs (passed as arguments)
+function p4d {
+    # Not storing this in a variable beforehand will for some unknown reason sometimes lead to unability to expand it
+    local args=$*
+
+    # Removing the highlighting made by P4DIFF allows vim to add its own.
+    # Removing \r characters makes it easier to read diffs when working in a Windows environment (another way is to make them invisible in vim, see highlight group Ignore)
+    # In this case vim will automatically detect content and set syntax=diff, so not adding it.
+    P4DIFF= p4 diff -du3 $@ | tr -d '\r' | vim -R -c 'set noswapfile' -c "file p4 diff -du3 $args" -
+}
+
+# p4 diff for a particular changelist (cannot pass file specs in this flavor)
+function p4dc {
+    p4oclist $1 | P4DIFF= xargs -r p4 diff -du3 | tr -d '\r' | vim -R -c 'set noswapfile' -c "file p4dc $1" -
+}
+
+alias p4dt='P4DIFF="vimdiff -c \"wincmd l\" -c \"norm ]c[c\"" p4 diff'
+
+function p4d2 {
+    p4 diff2 -du3 $@ | vim -R -c 'set syntax=diff' -
+}
+
+# Diff2 the changes of a given changelist at a given path
+function p4d2c {
+    DEPOT_PATH=$1
+    CHANGELIST=$2
+    CHANGELIST_BEFORE=$(($CHANGELIST-1))
+    p4 diff2 -Od -du3 $1@{$CHANGELIST_BEFORE,$CHANGELIST} | hl_p4diff | less
+}
+
+# Impossible to use p4 diff2 with P4DIFF, print the 2 files instead
+# https://stackoverflow.com/questions/2211063/perforce-visual-diff-of-a-branched-file-p4-diff2-with-external-diff
+#alias p4d2t='P4DIFF=vimdiff p4 diff2'
+
+# Vimdiff the contents of two files given their depot path (file specs)
+# No need for a client.
+function p4vd {
+    tmp1=$(mktemp)
+    tmp2=$(mktemp)
+    p4 print -o $tmp1 $1
+    p4 print -o $tmp2 $2
+    vimdiff -c "wincmd l" -c "norm ]c[c" $tmp1 $tmp2
+}
+
+# Vimdiff the contents of two files given their depot path (file specs)
+# No need for a client.
+function p4vdcpp {
+    tmp1=$(mktemp --suffix=.cpp)
+    tmp2=$(mktemp --suffix=.cpp)
+    p4 print -o $tmp1 $1
+    p4 print -o $tmp2 $2
+    vimdiff -c "wincmd l" -c "norm ]c[c" -c ':windo set syntax=cpp' $tmp1 $tmp2
+}
+
+function p4dct {
+    # https://stackoverflow.com/questions/1121557/how-do-i-get-diffs-of-all-the-files-in-a-pending-perforce-changelist
+    P4DIFF=vimdiff sh -c "p4 opened -c $1 | sed -e 's/#.*//' | p4 -x - diff"
+}
+
+function hl_p4describe {
+    hl -ei \
+        -2y '^Change ([0-9]+) by' \
+        -2r 'by\s(.+)@' \
+        -2m 'by\s\w+@(.+)\son\s' \
+        -2c '\*pending\*' \
+        -2c '^Affected files.*' \
+        -2c '^Differences.*' \
+        -1W '^====' \
+        -1W '====$' \
+        -1w "$current_p4branch" \
+        -2w '\.\.\. (//.*/).*#[0-9]+' \
+        -2r '\.\.\. //.*/(.*)#[0-9]+' \
+        -2w '#[0-9]+' \
+        -2c '#[0-9]+ ([a-zA-Z]+)'
+}
+
+function p4ds() {
+    local args=$@
+    p4 describe -a -S -du3 $args | \
+        tr -d '\r' | \
+        vim -R -c 'set syntax=diff' -c 'set noswapfile' -c "file p4 describe -a -S -du3 $args" -
+}
+
+function p4ds2() {
+    p4ds -db -dw $@
+}
+
+# With -db (ignitespace changes)
+function p4dsi() {
+    p4ds -db $@
+}
+
+alias p4D='p4 delete'
+
+alias p4fl='p4 filelog'
+
+alias p4e='p4 edit'
+
+function p4h {
+    p4 help $1 | less
+}
+
+function p4o {
+    p4 opened $@ | vim -R -c "set syntax=perforce" -c 'set noswapfile' -c ":file p4 opened $*" -
+}
+
+function p4oc {
+    p4 opened -c $1 | vim -R -c "set syntax=perforce" -c 'set noswapfile' -c ":file p4 opened -c $1" -
+}
+
+# Provides the list of p4 opened files in the form of paths relative to the current branch.
+# This list can then be piped to xargs, for example: p4olist | xargs ag "printf"
+function p4olist {
+    p4 -F %depotFile% opened | sed -e "s@$current_p4branch/@@g"
+}
+export -f p4olist
+function p4oclist {
+    p4 -F %depotFile% opened -c $1 | sed -e "s@$current_p4branch/@@g"
+}
+export -f p4oclist
+
+# Handy aliases based on p4olist
+alias vfp='vim `p4olist | fzf --height=20 | tee /dev/tty`'
+alias vim_fix_printf='vim -q <(p4olist | xargs -r grep -n printf)'
+
+# Use -h to not sync the target files to #have, otherwise it can break the build because of unwanted recent changes
+alias p4i='p4 integrate -h'
+
+function p4p {
+    p4 print $1 | vim -R -c "set syntax=$2" -
+}
+
+function p4pq {
+    p4 print -q $1 | vim -R -c "set syntax=$2" -
+}
+
+alias p4rs='P4EDITOR="vim -c \"set nohlsearch\" -c \"silent! />>>> ORIGINAL\" -c \"norm zz\"" P4DIFF="vimdiff -c \"wincmd l\" -c \"norm ]c[c\" -c \"norm zz\"" p4 resolve'
+alias p4rsn='p4 resolve -n'
+alias p4rscpp='P4EDITOR="vim -c \"set nohlsearch\" -c \"set syntax=cpp\" -c \"silent! />>>> ORIGINAL\" -c \"norm zz\"" P4DIFF="vimdiff -c \"wincmd l\" -c \"norm ]c[c\" -c \"norm zz\"" p4 resolve'
+
+alias p4rv='p4 revert'
+alias p4rva='p4 revert -a'
+function p4rvc() {
+    p4 revert -c $1 ...
+}
+
+alias p4ro='p4 reopen'
+
+# reopen all files from changelist 1 into changelist 2
+function p4roc2c() {
+    # TODO: Fix case where source CL has no files
+    FROM_CL=$1
+    TO_CL=$2
+    p4oclist $FROM_CL | xargs -d '\n' -I{} -r p4 reopen -c $TO_CL "{}"
+    echo Reopened all files from change $FROM_CL to change $TO_CL.
+}
+
+# reopen all files from default changelist into specified changelist
+function p4rod() {
+    local TO_CL=$1
+    p4roc2c default $TO_CL
+}
+
+# reopen all Windows binaries
+function p4rob() {
+    p4 reopen -c $1 ....exe ....dll ....pdb
+}
+
+alias p4sh='p4 shelve -c'
+alias p4shf='p4 shelve -f -c'
+alias p4shd='p4 shelve -d -c'
+function p4shre() {
+    p4 shelve -d -c $1
+    p4 shelve -c $1
+}
+function p4ush() {
+    p4 unshelve -c $1 -s $1
+}
+function p4ushf() {
+    p4 unshelve -f -c $1 -s $1
+}
+
+# re-shelve (useful for kicking swarm)
+function p4resh() {
+    echo Reshelving $1...
+    p4 shelve -d -c $1
+    p4 shelve -c $1
+    echo Reshelved $1.
+}
+
+# Switch from one shelve to another
+function p4sw {
+    FROM_CL=$1
+    TO_CL=$2
+    p4 shelve -c $FROM_CL -f
+    p4 revert -c $FROM_CL ...
+    p4 unshelve -s $TO_CL -c $TO_CL
+    echo Ready to work in CL $TO_CL.
+}
+
+function p4sm {
+    p4 submit -c $1 \
+        | hl -ei \
+            -3y 'renamed change ([0-9]+)' \
+            -2y 'change ([0-9]+)' \
+            -1w "$current_p4branch" \
+            -2w '(//.*/).*#[0-9]+' \
+            -2r '//.*/(.*)#[0-9]+' \
+            -2w '#[0-9]+' \
+            -2c '^(.*) //'
+} 
+
+# p4 'status'
+function p4s_raw {
+    # Default changelist (special case)
+    printf %100s | tr ' ' '=' ; echo
+    echo Default change
+    p4 opened -c default $current_p4branch/... 2> /dev/null
+
+    # Numbered changelists
+    p4 -F "%change%" changes -u$USER -c$current_p4client -spending $current_p4branch/... 2> /dev/null | \
+        sed '/default change/d' | \
+        cut -d ' ' -f2 | \
+        sort -n -u -r | \
+        xargs -r -i{} sh -c "echo ; printf %100s | tr ' ' '=' ; echo ; p4 describe -s -S {} | tr -d '\r' | sed '/^[\t]*$/d' ; echo Opened files ... ; p4 opened -c {}"
+}
+
+# p4 'status'
+function p4s {
+    p4s_raw | vim -R -c "set syntax=perforce" -
+}
+
+# p4 'status', but in the past
+function p4S {
+    MAX_CHANGES="${1:-2}" # Sets to default value unless argument $1 exists. See https://unix.stackexchange.com/questions/122845/using-a-b-for-variable-assignment-in-scripts/122848#122848
+    p4 -F "%change%" changes -u$USER -m$MAX_CHANGES $current_p4branch/... | \
+        cut -d ' ' -f2 | \
+        sort -n -u -r | \
+        xargs -r -i{} sh -c "printf %100s | tr ' ' '=' ; echo ; p4 describe -s {} | tr -d '\r' ; echo" | \
+        vim -R -c "set syntax=perforce" -c "set wrap" -
+}
+
+# https://gist.github.com/tpounds/7bfca4744f592a74606a
+function p4pickaxe {
+    DEPOT_PATH=$1
+    SEARCH_REGEX=$2
+    p4 changes $DEPOT_PATH | \
+        awk '{ print $2 }' | \
+        xargs -l sh -c 'p4 describe -du $0 | \
+        awk "/^[-+].*'$SEARCH_REGEX'/ { found=1 } // { buf = buf\"\n\"\$0 } END { if(found) print buf }" | \
+        colordiff'
+}
+
+# Get file log for one file, outputs all the full p4 paths it had in history
+function list_all_history_p4_paths() {
+    p4 filelog -i -s $1 | grep --color=never ^//
+}
+
+# Get all changes that occurred on given path, outputs a list in the form <path>@<change> for each change.
+function list_all_filespecs_with_changelist() {
+   p4 -F %change% changes $1 | cut -d ' ' -f2 | xargs -r -I% echo $1@%
+}
+export -f list_all_filespecs_with_changelist
+
+# Get full list of changes on given path (including branch history) in the form <path>@<change>
+function list_all_history_p4_paths_with_changelists() {
+    list_all_history_p4_paths $1 | xargs -r -I{} bash -c 'list_all_filespecs_with_changelist {}'
+}
+
+# Get a print of all content versions of a given path (including branch history)
+function rawprint_all_history_p4_content() {
+    list_all_history_p4_paths_with_changelists $1 | xargs -r -I{} sh -c 'echo =========================== ; p4 print {}'
+}
+
+# Get a print of all content versions of a given path (including branch history)
+function print_all_history_p4_content() {
+    rawprint_all_history_p4_content $@ | vim -R -
+}
+
+function p4dump_path() {
+    mkdir -p $1
+    p4 -F %change% changes //$1/... | cut -d ' ' -f2 | sort -r -n -u | xargs -r -I{} sh -c "echo Dumping change {} to $1/dump_{}.txt... ; p4 describe -a -S -du0 -db -dw -dl {} > $1/dump_{}.txt"
+}
+
