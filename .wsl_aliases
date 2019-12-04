@@ -1,0 +1,54 @@
+# Call batch cmd without many characters. Example: c ping 127.0.0.1
+function c {
+    args=$@
+    cmd /c "$args"
+}
+
+function kill_windows_process() {
+    taskkill /im $1 /f
+
+    local ret_val=$?
+
+    # If process not found, don't set an error exit status for this
+    if [ $ret_val -eq 128 ]; then
+        (exit 0)
+    else
+        (exit $ret_val)
+    fi
+}
+
+# Running cmd.exe to call a batch file and with "< nul" to prevent "PAUSE" command from blocking
+# causes issues when the batch file path has spaces, because cmd.exe cannot find the file. This is
+# a hack to make it work using an intermediate temporary batch file. Make sure %ERRORLEVEL% of batch
+# file will become the $? in bash.
+# It also supports running a batch using a relative directory, contrary to
+# cmd /c 'path/to/batch.bat' which will fail.
+# Example usage: run_batch_with_spaces_and_no_pause "path/to/file with spaces.bat" /specialargument
+function run_batch_with_spaces_and_no_pause() {
+    local batch_path_with_spaces=$1
+    local batch_arguments=$2
+    local temp_file_name_no_ext=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 16)
+    echo -e "@echo off\r\ncall \"$batch_path_with_spaces\" < nul" > /mnt/c/Windows/Temp/${temp_file_name_no_ext}.bat
+    cmd /c "c:\Windows\Temp\\${temp_file_name_no_ext}.bat ${batch_arguments}" | hl_generic_log
+    local ret_val=$?
+    rm /mnt/c/Windows/Temp/${temp_file_name_no_ext}.bat
+    (exit $ret_val)
+}
+
+# Requires pslist from SysInternals in PATH
+function ptree() {
+    if [[ -z "$1" ]]; then
+        pslist -t | vim -R -c "set cursorline" -
+    else
+        local search_term=$1
+        pslist -t | vim -R -c "set cursorline" -c "norm 8j" -c "silent! /$search_term" -c "norm zz" -
+    fi
+}
+
+# Requires nircmdc in PATH (see https://www.nirsoft.net/utils/nircmd.html)
+function report_pipe_status_with_sound() {
+    local ret=${PIPESTATUS[${1:0}]}
+    nircmdc beep 440 200
+    (exit $ret)
+}
+

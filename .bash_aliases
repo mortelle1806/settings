@@ -17,12 +17,6 @@ alias vdd='vimdirdiff'
 # Color codes reference: https://misc.flogisoft.com/bash/tip_colors_and_formatting
 alias ag='ag --color-match "39;91"'
 
-# Call batch cmd without many characters. Example: c ping 127.0.0.1
-function c {
-    args=$@
-    cmd /c "$args"
-}
-
 function sba {
     . ~/.bash_aliases
 }
