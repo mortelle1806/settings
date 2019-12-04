@@ -185,4 +185,34 @@ function report_pipe_status() {
     (exit $ret)
 }
 
+# Simple generic highlighting
+function hl_generic_log {
+    hl -ei \
+        -2r '\<(exception)\>' \
+        -2g '\<(no errors)\>' \
+        -2g '\<(no error)\>' \
+        -2g '\<(0 errors)\>' \
+        -2g '\<(0 error)\>' \
+        -2g '\<(0 warnings)\>' \
+        -2g '\<(0 warning)\>' \
+        -2r '\<(errors)\>' \
+        -2r '\<(error)\>' \
+        -2r '\<(assert)\>' \
+        -2r '\<(failure)\>' \
+        -2r '\<(failed)\>' \
+        -2r '\<(fail)\>' \
+        -2y '\<(warnings)\>' \
+        -2y '\<(warning)\>' \
+        -2y '\<(warn)\>' \
+        -2g '\<(debug)\>' \
+        -2g '\<(succeeded)\>' \
+        -2g '\<(successfully)\>' \
+        -2g '\<(successful)\>' \
+        -2g '\<(success)\>' \
+        -3b '\<(info)\>' \
+        -1w '\<(trace)\>' \
+        -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.exe' \
+        -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.bat' \
+        -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.cmd' \
+        -2Y '[a-zA-Z0-9\/\:\\\._\-]+\.ps1'
 }
