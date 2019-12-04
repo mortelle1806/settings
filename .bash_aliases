@@ -138,6 +138,8 @@ alias genid=generate_ids
 # Google codesearch: always generate/use index in the current directory
 export CSEARCHINDEX=./.csearchindex
 
+alias cs='csearch'
+
 function generate_csearch() {
     echo Generating .csearchindex file...
     local temp_index_file=".csearchindex_new"
