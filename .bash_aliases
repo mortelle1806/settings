@@ -1,82 +1,3 @@
-# ----------------------
-# Git Aliases
-# ----------------------
-alias ga='git add -v'
-alias gaa='git add -v .'
-alias gai='git add -v -i'
-alias gap='git add -v -p'
-alias gau='git add -v -u'
-alias gb='git --no-pager branch'
-alias gbd='git branch --delete'
-alias gbD='git branch --delete --force'
-alias gbr='git branch --remotes'
-alias gc='git commit'
-alias gca='git commit --all'
-alias gcam='git commit --all --message'
-alias gcm='git commit --message'
-alias gco='git checkout'
-alias gcob='git checkout -b'
-alias gcom='git checkout master'
-alias gd='git diff'
-alias gdc='git diff --cached'
-alias gdt='git difftool'
-alias gdtc='git difftool --cached'
-alias gdtt='git difftoolvimtabs'
-alias gdtd='git difftoolvimdirdiff'
-alias gdtdc='git difftoolvimdirdiff --cached'
-alias gf='git fetch'
-alias gh='git help'
-alias gl='git --no-pager log --graph --oneline --decorate -10'
-alias gl2='git log --graph --oneline --decorate'
-alias gla='git log --graph --oneline --decorate --all'
-alias gld='git log --pretty=format:"%h %ad %s" --date=short'
-alias gm='git merge'
-alias gp='git push'
-alias gpt='git push --tags'
-alias gpd='git push --delete'
-alias gs='git status'
-alias gsu='git status -u'
-alias gt='git tag'
-alias gtl='git describe --tags'
-alias gtd='git tag -d'
-
-# Source git completion file to be able to use __git_complete, which allows
-# completion on bash aliases such as 'gco' for 'git checkout' 
-# NOTE: This path works for Ubuntu 16.04 but may not be the same for other distros.
-[ -f /usr/share/bash-completion/completions/git ] && . /usr/share/bash-completion/completions/git
-
-__git_complete ga _git_add
-__git_complete gaa _git_add
-__git_complete gai _git_add
-__git_complete gap _git_add
-__git_complete gb _git_branch
-__git_complete gbd _git_branch
-__git_complete gc _git_commit
-__git_complete gca _git_commit
-__git_complete gcam _git_commit
-__git_complete gcm _git_commit
-__git_complete gco _git_checkout
-__git_complete gcob _git_checkout
-__git_complete gcom _git_checkout
-__git_complete gd _git_diff
-__git_complete gdc _git_diff
-__git_complete gdt _git_difftool
-__git_complete gdtc _git_difftool
-__git_complete gf _git_fetch
-__git_complete gl _git_log
-__git_complete gld _git_log
-__git_complete gm _git_merge
-__git_complete gp _git_push
-__git_complete gpt _git_push
-__git_complete gs _git_status
-__git_complete gsu _git_status
-__git_complete gt _git_tag
-__git_complete gtd _git_tag
-
-# ----------------------
-# MISC
-# ----------------------
-
 alias tmux='tmux -2'
 
 alias ll='ls -l'
@@ -106,6 +27,8 @@ function sbr {
 function sp {
     . ~/.profile
 }
+
+source .git_aliases
 
 # "Find file": Make user choose a file from the fnid results. To be used with backticks eg. `ff`.
 # The tee command is here for comfort when using `ff` because the selected path will be output to the terminal.
