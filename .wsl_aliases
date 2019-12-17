@@ -28,8 +28,9 @@ function run_batch_with_spaces_and_no_pause() {
     local batch_path_with_spaces=$1
     local batch_arguments=$2
     local temp_file_name_no_ext=$(cat /dev/urandom | tr -cd 'a-f0-9' | head -c 16)
-    echo -e "@echo off\r\ncall \"$batch_path_with_spaces\" < nul" > /mnt/c/Windows/Temp/${temp_file_name_no_ext}.bat
-    cmd /c "c:\Windows\Temp\\${temp_file_name_no_ext}.bat ${batch_arguments}" | hl_generic_log
+    echo -e "@echo off\r\ncall \"$batch_path_with_spaces\" ${batch_arguments} < nul" > /mnt/c/Windows/Temp/${temp_file_name_no_ext}.bat
+    cmd /c "c:\Windows\Temp\\${temp_file_name_no_ext}.bat" | hl_generic_log
+    report_pipe_status
     local ret_val=$?
     rm /mnt/c/Windows/Temp/${temp_file_name_no_ext}.bat
     (exit $ret_val)
