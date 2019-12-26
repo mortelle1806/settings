@@ -195,16 +195,16 @@ endfunction
 " Show the whitespace characters
 set listchars=space:·,tab:>-,trail:·,eol:$
 
-nnoremap <Space>a :lgetexpr system('ag --hidden --ignore .git --ignore tags --vimgrep "<C-R><C-W>"')<CR>
+nnoremap <Space>a :lgetexpr system('ag --hidden --ignore .git --ignore tags --vimgrep "<C-R><C-W>"')<Left><Left><Left>
 nnoremap <Space>A :lgetexpr system('ag --hidden --ignore .git --ignore tags --vimgrep ""')<Left><Left><Left>
 
-nnoremap <Space>c :lgetexpr system('csearch -n "\W<C-R><C-W>\W"')<CR>
+nnoremap <Space>c :lgetexpr system('csearch -n "\W<C-R><C-W>\W"')<Left><Left><Left>
 nnoremap <Space>C :lgetexpr system('csearch -n ""')<Left><Left><Left>
 
-nnoremap <Space>i :lgetexpr system('lid -Rgrep <C-R><C-W>')<CR>
+nnoremap <Space>i :lgetexpr system('lid -Rgrep <C-R><C-W>')<Left><Left>
 nnoremap <Space>I :lgetexpr system('lid -Rgrep ')<Left><Left>
 
-nnoremap <Space>g :lgetexpr system('global --result grep <C-R><C-W>')<CR>
+nnoremap <Space>g :lgetexpr system('global --result grep <C-R><C-W>')<Left><Left>
 nnoremap <Space>G :lgetexpr system('global --result grep ')<Left><Left>
 
 " Setting g:ackprg is mandatory for :Ack command to be defined by the Ack.vim
