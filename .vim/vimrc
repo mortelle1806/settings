@@ -498,19 +498,11 @@ if v:version >= 800
 endif
 
 " Previous/next tab
-nmap [T :tabprevious<CR>
-nmap ]T :tabnext<CR>
+nmap [t :tabprevious<CR>
+nmap ]t :tabnext<CR>
 if v:version >= 800
-    tmap [T <C-W>:tabprevious<CR>
-    tmap ]T <C-W>:tabnext<CR>
-endif
-
-" Previous/next tag
-nmap [t :tprevious<CR>
-nmap ]t :tnext<CR>
-if v:version >= 800
-    tmap [t <C-W>:tprevious<CR>
-    tmap ]t <C-W>:tnext<CR>
+    tmap [t <C-W>:tabprevious<CR>
+    tmap ]t <C-W>:tabnext<CR>
 endif
 
 " Sort quick fix window / location list window by file path
