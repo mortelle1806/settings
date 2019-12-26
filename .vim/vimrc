@@ -421,8 +421,12 @@ let g:perforce_prompt_on_open = 0
 " Tip found here: https://stackoverflow.com/questions/5017009/confusion-about-vim-folding-how-to-disable
 set diffopt+=context:99999
 
+command! -bang -nargs=* FSList call fzf#run(fzf#wrap({'source': 'cat ./.fslist', 'options': '--history=./.fzf_history'}))
+nnoremap <Space>f :FSList<CR>
+
 " Open FZF. The selected file will get opened in the current window.
-nnoremap <Space>f :FZF<CR>
+" Note: this lists all files found without requiring prior generation.
+nnoremap <Space>F :FZF<CR>
 
 " Files listed by fnid (id-utils)
 command! -bang -nargs=* Fnid call fzf#run(fzf#wrap({'source': 'fnid'}))

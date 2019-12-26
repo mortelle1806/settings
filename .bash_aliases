@@ -32,13 +32,13 @@ function sp {
 
 source ~/.git_aliases
 
-# "Find file": Make user choose a file from the fnid results. To be used with backticks eg. `ff`.
+# "Find file": Make user choose a file from the .fslist file contents. To be used with backticks eg. `ff`.
 # The tee command is here for comfort when using `ff` because the selected path will be output to the terminal.
-alias ff="fnid | fzf --height=20 | tee /dev/tty"
+alias ff="cat .fslist | fzf --height=20 | tee /dev/tty"
 
-# "Find file to clipboard": Make user choose a file from the fnid and copy the path to the clipboard.
+# "Find file to clipboard": Make user choose a file from the .fslist file contents and copy the path to the clipboard.
 # The newline character at the end is cleared before storage, so that it can be pasted while editing a command, without validating.
-alias ffc="fnid | fzf --height=20 | tee /dev/tty | tr -d '\n' | xclip"
+alias ffc="cat .fslist | fzf --height=20 | tee /dev/tty | tr -d '\n' | xclip"
 
 # Go back to a parent directory
 # https://github.com/vigneshwaranr/bd
@@ -46,11 +46,11 @@ alias bd=". bd -si"
 
 alias vrc="vim -c 'cd ~/.vim' ~/.vim/vimrc"
 alias vfd="vim -c 'Fnid'"
-alias vff="vim -c 'FZF'"
+alias vff="vim -c 'FSList'"
 alias vfl="vim -c 'Ag'"
 alias vft="vim -c 'Tags'"
 
-alias V="vfd"
+alias V="vff"
 
 # Open vim at last mark before last exit. This means the last edited file and last position.
 # http://vim.wikia.com/wiki/Open_the_last_edited_file
@@ -154,14 +154,33 @@ function generate_csearch() {
         echo "Error!!!!"
         popd
         return 1
-    fi 
+    fi
     rm .csearchindex
     mv $temp_index_file .csearchindex
 }
 export -f generate_csearch
 alias gencs=generate_csearch
 
-alias genx='genid && gencs'
+function generate_fslist() {
+    echo Generating .fslist file...
+    local temp_fslist="./.fslist_new"
+    if [ -f "$temp_fslist" ]; then
+        rm $temp_fslist
+    fi
+
+    find . > $temp_fslist
+
+    RET=$?
+    if [ $RET -ne 0 ]; then
+        echo "Error!!!!"
+        popd
+        return 1
+    fi
+    rm .fslist
+    mv $temp_fslist .fslist
+}
+export -f generate_fslist
+alias genfsl=generate_fslist
 
 function generate_tags() {
     gtags --incremental --verbose
@@ -174,6 +193,8 @@ function generate_tags() {
 }
 export -f generate_tags
 alias gentags=generate_tags
+
+alias genx='generate_fslist && generate_csearch'
 
 # Set the current exit code as the exit code of the specified pipe (0 = the first command of the last pipe command)
 # If no argument is specified, the status of the pipe 0 is used.
