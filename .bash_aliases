@@ -5,6 +5,7 @@ alias la='ls -a'
 alias lla='ls -la'
 
 alias v='vim'
+alias vr='vim -R -'
 
 function vimdirdiff() {
     local path1=$1
