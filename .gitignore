@@ -1,2 +1,5 @@
 /.vim/tmp/
 tags
+
+# This empty file gets created by mc for no apparent reason
+.config/mc/panels.ini
